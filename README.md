@@ -1,4 +1,4 @@
-# OVERLOOK
+# **OVERLOOK**
 The details of this project are outlined in [Overlook - Solo Project](https://frontend.turing.edu/projects/overlook.html).
 
 ### Description
@@ -43,30 +43,30 @@ Run your test suite using the command:
 
 The test results will output to the terminal.
 
-# Checklist:
+## Checklist:
 - [X] All code follows the style guidelines set by Turing.
 - [ ] Comments have been removed from code.
 - [ ] Syntax has been checked for consistency.
 - [X] All git workflow was followed to show clear progress.
-- [ ] ###Iteration 1: Dashboard:
+- [ ] ***Iteration 1***: Dashboard:
 	- Any room bookings I have made (past or upcoming).
 	- The total amount I have spent on rooms.
-- [ ] ###Iteration 2: Customer Interaction:
+- [ ] ***Iteration 2***: Customer Interaction:
 	- I should be able to select a date for which I’d like to book a room for myself.
 	- Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date.
     - I should be able to filter the list of available rooms by their roomType property.
     - I should be able to select a room for booking.
     - In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their room search.
-- [ ] ###Iteration 3: Accessibility:
+- [ ] Iteration 3: Accessibility:
     - Create a branch for accessibility.
     - Use this branch to make your dashboard as accessible as possible.
     - Push this branch up to GH. You can merge the changes into main but do not delete this branch. (this is to check for accessibility without the log-in page interferring with the test).
-- [ ] ###Iteration 4: Login
+- [ ] ***Iteration 4***: Login
     - Create a log-in page before granting access to the dashboard page.
     - When first arriving at the site, a user should be able to log in with a username and password.
     - Upon successfully logging in, I should see my dashboard.
     - username: "customer50" (50 is the ID of the user), password: "overlook2021".
-- [ ] ###Iteration 5: (Optional) Manager Interaction:
+- [ ] ***Iteration 5***: (Optional) Manager Interaction:
     - I should be able to login as the manager.
     - username: "manager", password: "overlook2021".
     - I should see a dashboard page that shows me:
