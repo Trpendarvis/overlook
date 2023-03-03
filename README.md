@@ -1,50 +1,100 @@
-# Webpack Starter Kit
+# OVERLOOK
+The details of this project are outlined in [Overlook - Solo Project](https://frontend.turing.edu/projects/overlook.html).
 
-## Clone This Repo
+### Description
+This project is the final solo project for Mod2 of Turing Coding School. The purpose of this project is to use API data and create different classes with methods and to use the API data to to create functionality to be displayed to the DOM. This project is meant to be a hotel booking page that a user can log-in and choose from a varity of rooms. Deployment link [GitHub Pages](https://pages.github.com/).
 
-That's right, _clone_ not fork. You will use this repo multiple times, but you can only fork a repository once. So here is what you need to do to clone the repo and still be able to push changes to your repo:
+### Gif of Working Project:
 
-1. Clone down this repo. Since you don't want to name your project "webpack-starter-kit", you can use an optional argument when you run `git clone` (you replace the `[...]` with the terminal command arguments): `git clone [remote-address] [what you want to name the repo]`
-1. Remove the default remote: `git remote rm origin` (notice that `git remote -v` not gives you back nothing)
-1. Create a new repo on GitHub with the name of `[what you want to name the repo]` to be consistent with naming
-1. Copy the address that you would use to clone down this repo - something like `git@github.com:...`
-1. Add this remote to your cloned down repo: `git remote add origin [address you copied in the previous step]` - do not include the brackets
+TBD
 
-Now try to commit something (just add a line in the README) and push it up to your new repo. If everything is setup correctly, you should see the changes on GitHub.
+### Contributors
+- Timothy Pendarvis [GitHub](https://github.com/Trpendarvis)
 
-## Setup
+### Challenges:
 
-After one person has gone through the steps of cloning down this repo and editing the remote, everyone should clone down the repo.
+### Issues: 
+Current issues to be addressed are:
+- [X] No known major issues or bugs.
+- [X] function can to be cleaned up and refactored with newer technologies, such as React at a later date, at the original time of this project React is not a learned tech.
+- [ ] 
 
-Then install the library dependencies. Run:
+### Type of change/ Goals:
+- [ ] Complete Iteration 5. 
+- [ ] Refactoring of code. 
+- [ ] Needs to track down any future bugs and fix them after refactoring.
+- [ ] CSS polishing and rework.
+- [ ] Add in Charts.js for further improve UX/UI.
 
-```bash
-npm install
-```
+### How Has This Been Tested?
+Using Mocha/Chai testing run "npm test" all test for tested classes has been completed and are passing.
+**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
+All test are complete and passing:
 
-To verify that it is setup correctly, run `npm start` in your terminal. Go to `http://localhost:8080/` and you should see a page with the Turing logo image and a beautiful gradient background. If that's the case, you're good to go. Enter `control + c` in your terminal to stop the server at any time.
+- [ ] Test A: 
+- [ ] Test B: 
+- [ ] Test C: 
+- [ ] Test D: 
 
-## Where to Add Your Code
+## Running Tests
+Run your test suite using the command:
 
-### JavaScript
+'npm test'
 
-You have to be very intentional with where you add your feature code. This repo uses a tool called [webpack](https://webpack.js.org/) to combine many JavaScript files into one big file. Webpack enables you to have many, separate JavaScript files to keep your code organized and readable. Webpack expects all of your code files to be in a specific place, or else it doesn't know how to combine them all behind the scenes.
+The test results will output to the terminal.
 
-**Create all of your feature code files in the `src` directory.**
+# Checklist:
+- [X] All code follows the style guidelines set by Turing.
+- [ ] Comments have been removed from code.
+- [ ] Syntax has been checked for consistency.
+- [X] All git workflow was followed to show clear progress.
+- [ ] ###Iteration 1: Dashboard:
+	- Any room bookings I have made (past or upcoming).
+	- The total amount I have spent on rooms.
+- [ ] ###Iteration 2: Customer Interaction:
+	- I should be able to select a date for which I’d like to book a room for myself.
+	- Upon selecting a date, I should be shown a list of room details for only rooms that are available on that date.
+    - I should be able to filter the list of available rooms by their roomType property.
+    - I should be able to select a room for booking.
+    - In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their room search.
+- [ ] ###Iteration 3: Accessibility:
+    - Create a branch for accessibility.
+    - Use this branch to make your dashboard as accessible as possible.
+    - Push this branch up to GH. You can merge the changes into main but do not delete this branch. (this is to check for accessibility without the log-in page interferring with the test).
+- [ ] ###Iteration 4: Login
+    - Create a log-in page before granting access to the dashboard page.
+    - When first arriving at the site, a user should be able to log in with a username and password.
+    - Upon successfully logging in, I should see my dashboard.
+    - username: "customer50" (50 is the ID of the user), password: "overlook2021".
+- [ ] ###Iteration 5: (Optional) Manager Interaction:
+    - I should be able to login as the manager.
+    - username: "manager", password: "overlook2021".
+    - I should see a dashboard page that shows me:
+        - Total Rooms Available for today’s date.
+        - Total revenue for today’s date.
+        - Percentage of rooms occupied for today’s date.
+    - I should be able to search for any user by name and:
+        - View their name, a list of all of their bookings, and the total amount they’ve spent.
+        - Add a room booking for that user.
+        - Delete any upcoming room bookings for that user (they cannot delete a booking from the past).
 
-Since code is separated into multiple files, you need to use the `import` and `export` syntax to share code across file.
+### Setup
+If you would like to view the code and its inner working please follow the steps below, or you can follow this deployment link [GitHub Pages](https://pages.github.com/).
+1. Fork this repo - on the top right corner of this page, click the **Fork** button.
+1. Clone down the _forked_ repo. `git clone [remote-address] [what you want to name the repo]`
+1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
+1. Run `npm start` in the terminal to see the HTML page (you should see some boilerplate HTML displayed on the page).  `Control + C` is the command to stop running the local server.  Closing the terminal without stopping the server first could allow the server to continue to run in the background and cause problems. This command is not specific to Webpack; make note of it for future use.   
+1. Set all collaborators on the forked repo.  
+1. Do not run `npm audit fix --force`.  This will update to the latest version of packages.  We need to be using `webpack-dev-server@3.11.2` which is not the latest version.  If you start to run into Webpack errors, first check that all group members are using the correct version.  
+
+--------------------ADDITIONAL INFORMATION--------------------------
 
 Here is a video that walks through some information about [import and export](https://www.youtube.com/watch?v=_3oSWwapPKQ). There are a lot of resources out there about `import` and `export`, and resources will sometimes call them `ES6 modules`. It's something you will see in React and beyond.
 
-### HTML
-
-Add the HTML you need in the `index.html` file in the `./dist` directory. There is some boilerplate HTML that exists from the start that you can modify.
-
 ### Images
-
 Add your image files in the `src/images` directory. Similar to CSS files, you need to `import` image files in the JavaScript entry file (`scripts.js`). Then go into the HTML and add an `img` element with the `src` attribute pointing to the `images` directory. There is an example in the `index.html` file for you to see.
 
-## How to View Your Code in Action
+## How to View The Code in Action
 
 In the terminal, run:
 
@@ -59,24 +109,6 @@ Project is running at http://localhost:8080/
 ```
 
 Go to `http://localhost:8080/` in your browser to view your code running in the browser.
-
----
-
-## Test Files Organization
-
-Similar to feature code, your test code needs to be put in a specific place for it to run successfully.
-
-**Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
-
-## Running Your Tests
-
-Run your test suite using the command:
-
-```bash
-npm test
-```
-
-The test results will output to the terminal.
 
 ---
 
