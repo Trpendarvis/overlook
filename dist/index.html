@@ -1,14 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
+  <link href="">
+  <link href="">
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
+  <title>Overlook</title>
 </head>
 <body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
+  <nav class="navBar">
+    <div class="title-wrap">
+      <img src="" class="logo" alt="some discription of a logo">
+      <h1 class="navTitle">Overlook</h1>
+    </div>
+    <section class="navBarInteractions">
+      <div class="navButtons">
+        <button id="" data-current=""></button>
+        <button id="" data-current=""></button>
+        <button id="" data-current=""></button>
+        <button id="" data-current=""></button>
+      </div>
+      <input class="searchBar" id="search-bar" type="text" placeholder="Search Here">
+      <label class="visuallyHidden" for="search-bar">Search</label>
+    </section>
+  </nav>
+  <main>
+    <section class="cardSection" id="card-section" data-page="home">
+      <!-- Cards get added here -->
+    </section>
+    <img class="mainBackGroundImage" src="" alt="Picture of fancy hotel">
+  </main>
+  <footer></footer>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
 
