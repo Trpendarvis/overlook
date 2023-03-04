@@ -8,30 +8,38 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Overlook</title>
 </head>
-<body>
-  <img class="logoImage" src="images/hotel.png" alt="Picture of fancy hotel">
+<body id="background-image">
 
   <nav class="navBar">
-    <div class="title-wrap">
-      <!-- <img src="" class="logo" alt="some discription of a logo"> -->
-      <h1 class="navTitle">Overlook</h1>
+    <div class="navBar-left">
+      <img class="mainlogoImage" src="images/hotel.png" alt="Picture of fancy hotel">
+      <h1 class="navTitle">Overlook Hotel</h1> <!--interpolate `${customer.name ID?}`-->
     </div>
     <section class="navBarInteractions">
       <div class="navButtons">
-        <button id="" data-current="">Home</button>
-        <button id="" data-current="">Currency</button>
-        <button id="" data-current="">Trips</button>
-        <button id="" data-current="">My Account</button>
+        <button id="" data-current="">
+          <img class="logoImage" src="images/reception-bell.png" alt="Picture of fancy hotel">Home</button>
+        <button id="" data-current="">
+          <img class="logoImage" src="images/business-trip.png" alt="Picture of fancy hotel">Trips</button>
+        <button id="" data-current="">
+          <img class="logoImage" src="images/account.png" alt="Picture of fancy hotel">My Account</button>
+        <select id="currency-dropdown" data-current="">
+          <option value="usd">USD</option>
+          <option value="eur">EUR</option>
+          <option value="gbp">GBP</option>
+          <option value="jpy">JPY</option>
+          <option value="aud">AUD</option>
+        </select>
       </div>
       <input class="searchBar" id="search-bar" type="text" placeholder="Search Here">
       <label class="visuallyHidden" for="search-bar">Search</label>
     </section>
   </nav>
+
   <main>
     <section class="cardSection" id="card-section" data-page="home">
       <!-- Cards get added here -->
     </section>
-    <img class="mainBackGroundImage" src="images/eva-darron-oCdVtGFeDC0-unsplash.jpg" alt="Picture of fancy hotel">
   </main>
   <footer></footer>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->

@@ -2,12 +2,104 @@ body {
   background: gray;
 }
 
-.logoImage{
-  width: 45px;
-  height: 45px;
+#background-image {
+  background-size: cover;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px;
+  text-align: center;
+  color: #fff;
+  background-repeat: no-repeat;
+  transition: background-image 1.8 ease-in-out;
 }
 
-.mainBackGroundImage{
-  width:100vw;
-  height:100vh;
+.navBarInteractions button:hover {
+  background-color: #0c70db;
 }
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  height: 80px;
+  padding: 0 20px;
+}
+
+.navBar-left {
+  display: flex;
+  align-items: center;
+}
+
+.mainlogoImage {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.navTitle {
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.navBarInteractions {
+  display: flex;
+  align-items: center;
+}
+
+.navButtons {
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-right: 20px;
+  padding: 10px;
+}
+
+#currency-dropdown {
+  background-color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  height: 40px;
+  padding: 0 20px;
+  width: 100px;
+}
+
+#currency-dropdown option {
+  font-size: 16px;
+}
+
+
+.logoImage {
+  height: 20px;
+  margin-right: 10px;
+}
+
+.searchBar {
+  border: solid, black;
+  border-radius: 10px;
+  height: 40px;
+  padding: 0 20px;
+  width: 200px;
+}
+
+.visuallyHidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
