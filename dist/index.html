@@ -6,27 +6,22 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
   <title>Overlook</title>
 </head>
 <body id="background-image">
   <nav class="navBar">
-    <div class="navBar-left">
+    <div class="navBarLeft">
       <img class="mainlogoImage" src="images/hotel.png" alt="Picture of fancy hotel">
-      <h1 class="navTitle">Overlook Hotel</h1> <!--interpolate `${customer.name ID?}`-->
+      <h1 class="navTitle">Overlook Hotel</h1> <!--interpolate `${customer.name ID?}` , Welcomes you!${guest.ID.name}`-->
     </div>
     <section class="navBarInteractions">
       <div class="navButtons">
         <button id="" data-current="">
-          <img class="logoImage" src="images/reception-bell.png" alt="Picture of fancy hotel">Home</button>
+          <img class="iconImage" src="images/reception-bell.png" alt="Picture of fancy hotel">Home</button>
         <!-- <button id="" data-current="">
-          <img class="logoImage" src="images/account.png" alt="Picture of fancy hotel">Account</button> -->
+          <img class="iconImage" src="images/account.png" alt="Picture of fancy hotel">Account</button> -->
         <button id="" data-current="">
-          <img class="logoImage" src="images/business-trip.png" alt="Picture of fancy hotel">Trips</button>
+          <img class="iconImage" src="images/business-trip.png" alt="Picture of fancy hotel">Trips</button>
 
         <select id="currency-dropdown" data-current="">
           <option value="usd">USD</option>
@@ -39,14 +34,26 @@
     </section>
   </nav>
   <main>
-    <div class="calendar">
-      <label for="datepicker"></label>
-      <input type="text" id="datepicker">
-    </div>
-    <!-- <section class="cardSection" id="card-section" data-page="home">
-    Cards get added here
-    </section> -->
-
+      <div class="containerLeft">
+        <h2>When Would You Like to Stay?</h2>
+        <div id="datepicker"></div>
+        <section class="radioButtons">
+          <input type="radio" id="radio1" name="radio">
+          <label for="radio1">Residential</label>
+          <input type="radio" id="radio2" name="radio">
+          <label for="radio2">Single</label>
+          <input type="radio" id="radio3" name="radio">
+          <label for="radio3">Suite</label>
+          <input type="radio" id="radio4" name="radio">
+          <label for="radio4">Jr. Suite</label>
+        </section>
+      </div>
+      <button class="seachButton">
+        <img class="iconImage" src="images/loupe.png" alt="Picture of fancy hotel">SEARCH</button>
+      <div class="containerRight hidden">
+        <!-- content for the second container -->
+        <button>BOOK</button>
+      </div>
   </main>
   <footer></footer>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
