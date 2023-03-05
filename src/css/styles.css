@@ -10,7 +10,7 @@ body {
   background-color: rgba(255, 255, 255, 0.8);
   border-radius: 10px;
   padding: 0 20px;
-  max-width: 76vw;
+  max-width: 78vw;
   margin: 0 auto;
 }
 
@@ -129,9 +129,28 @@ button:hover {
 }
 
 /* .hidden{
-  visibility: hidden;
+  visibility: hidden !important;
 } */
 
-/* #datepicker{
+.ui-datepicker {
+  background-color: rgba(255, 255, 255, 0.5);
   color: #01a3f3;
-} */
+  border-color: orange;
+  border-radius: 10px;
+}
+.ui-state-active {
+  background-color: #01a3f3 !important;
+  border-radius: 5px;
+}
+.ui-datepicker-header {
+  color: orange;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+.ui-datepicker-calendar .ui-state-highlight {
+  background-color: orange;
+  border-color: orange;
+  color: black;
+  
+}
