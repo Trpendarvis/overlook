@@ -3,8 +3,11 @@
 
 // An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
+
+// import { apiCalls, addNewBooking } from "./apiCalls";
+// import Customer from "./class/Customer"
+// import Booking from "./class/Booking"
+// import Room from "./class/Room"
 
 //I want to be able to keep the right container hidden from view until the user searches I am using CSS visibility: hidden
 // document.querySelector('.containerRight').classList.add('hidden');
@@ -28,7 +31,29 @@ document.getElementById("background-image").style.backgroundImage = imgUrl;
 })
 
 //this is the datepicker
-$( function() {
-    $( "#datepicker" ).datepicker();
-  } );
+// $( function() {
+//     $( "#datepicker" ).datepicker();
+//   } );
 
+// Initialize the datepicker
+$('#datepicker').datepicker({
+    onSelect: function(dateText, inst) {
+      // Get the selected date as a Date object
+      var selectedDate = $(this).datepicker('getDate');
+      // Get the day of the month from the selected date
+      var dayOfMonth = selectedDate.getDate();
+      // Get the month from the selected date
+      var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+      var monthName = monthNames[selectedDate.getMonth()];
+      // Get the year from the selected date
+      var year = selectedDate.getFullYear();
+      // Do something with the selected day, month and year, e.g. log them to the console
+      console.log('Selected day: ' + dayOfMonth);
+      console.log('Selected month: ' + monthName);
+      console.log('Selected year: ' + year);
+    }
+  });
+  
+  
+  
+  
