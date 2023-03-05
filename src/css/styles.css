@@ -1,29 +1,19 @@
 body {
-  background: gray;
-}
-
-#background-image {
   background-size: cover;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px;
-  text-align: center;
-  color: #fff;
-  background-repeat: no-repeat;
-  transition: background-image 1.8 ease-in-out;
-}
-
-.navBarInteractions button:hover {
-  background-color: #0c70db;
+  color: #f4f1f1;
+  padding: 5vh;
+  /* transition: background-image 1.8 ease-in-out; */
 }
 
 .navBar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff;
-  height: 80px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
   padding: 0 20px;
+  max-width: 75vw;
+  margin: 0 auto;
 }
 
 .navBar-left {
@@ -32,18 +22,27 @@ body {
 }
 
 .mainlogoImage {
-  height: 50px;
-  margin-right: 10px;
+  height: 60px;
+  /* margin-right: 10px; */
 }
 
 .navTitle {
-  font-size: 28px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 220px;
+  color: black;
+  font-size: 32px;
   font-weight: bold;
 }
 
 .navBarInteractions {
   display: flex;
   align-items: center;
+}
+
+.navBarInteractions button:hover {
+  color: black;
+  background-color: #01a3f3;
 }
 
 .navButtons {
@@ -59,18 +58,25 @@ button {
   border: none;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 22px;
   margin-right: 20px;
   padding: 10px;
+  color: #01a3f3;
+}
+
+.logoImage {
+  height: 20px;
+  margin-right: 10px;
 }
 
 #currency-dropdown {
-  background-color: #fff;
-  border: none;
+  background-color: #ffffff;
+  /* border: none; */
   border-radius: 10px;
   font-size: 16px;
   height: 40px;
   padding: 0 20px;
+  margin-left: 5px;
   width: 100px;
 }
 
@@ -79,12 +85,7 @@ button {
 }
 
 
-.logoImage {
-  height: 20px;
-  margin-right: 10px;
-}
-
-.searchBar {
+/* .searchBar {
   border: solid, black;
   border-radius: 10px;
   height: 40px;
@@ -101,5 +102,8 @@ button {
   border: 0;
   clip: rect(0 0 0 0);
   overflow: hidden;
-}
+} */
 
+.calendar{
+  color: #01a3f3;
+}
