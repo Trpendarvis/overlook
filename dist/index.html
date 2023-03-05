@@ -8,32 +8,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Overlook</title>
 </head>
-<body>
+<body id="background-image">
   <nav class="navBar">
-    <div class="title-wrap">
-      <img src="" class="logo" alt="some discription of a logo">
-      <h1 class="navTitle">Overlook</h1>
+    <div class="navBarLeft">
+      <img class="mainlogoImage" src="images/hotel.png" alt="Picture of fancy hotel">
+      <h1 class="navTitle">Overlook Hotel</h1> <!--interpolate `${customer.name ID?}` , Welcomes you!${guest.ID.name}`-->
     </div>
     <section class="navBarInteractions">
       <div class="navButtons">
-        <button id="" data-current=""></button>
-        <button id="" data-current=""></button>
-        <button id="" data-current=""></button>
-        <button id="" data-current=""></button>
+        <button id="" data-current="">
+          <img class="iconImage" src="images/reception-bell.png" alt="Picture of fancy hotel">Home</button>
+        <!-- <button id="" data-current="">
+          <img class="iconImage" src="images/account.png" alt="Picture of fancy hotel">Account</button> -->
+        <button id="" data-current="">
+          <img class="iconImage" src="images/business-trip.png" alt="Picture of fancy hotel">Trips</button>
+
+        <select id="currency-dropdown" data-current="">
+          <option value="usd">USD</option>
+          <option value="eur">EUR</option>
+          <option value="gbp">GBP</option>
+          <option value="jpy">JPY</option>
+          <option value="aud">AUD</option>
+        </select>
       </div>
-      <input class="searchBar" id="search-bar" type="text" placeholder="Search Here">
-      <label class="visuallyHidden" for="search-bar">Search</label>
     </section>
   </nav>
   <main>
-    <section class="cardSection" id="card-section" data-page="home">
-      <!-- Cards get added here -->
-    </section>
-    <img class="mainBackGroundImage" src="" alt="Picture of fancy hotel">
+      <div class="containerLeft">
+        <h2>When Would You Like to Stay?</h2>
+        <div id="datepicker"></div>
+        <section class="radioButtons">
+          <input type="radio" id="radio1" name="radio">
+          <label for="radio1">Residential</label>
+          <input type="radio" id="radio2" name="radio">
+          <label for="radio2">Single</label>
+          <input type="radio" id="radio3" name="radio">
+          <label for="radio3">Suite</label>
+          <input type="radio" id="radio4" name="radio">
+          <label for="radio4">Jr. Suite</label>
+        </section>
+      </div>
+      <button class="seachButton">
+        <img class="iconImage" src="images/loupe.png" alt="Picture of fancy hotel">SEARCH</button>
+      <div class="containerRight hidden">
+        <!-- content for the second container -->
+        <button>BOOK</button>
+      </div>
   </main>
   <footer></footer>
   <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
   <script src="bundle.js"></script>
-
 </body>
 </html>
