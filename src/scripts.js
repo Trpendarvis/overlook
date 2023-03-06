@@ -5,16 +5,48 @@
 import './css/styles.css';
 
 // import { apiCalls, addNewBooking } from "./apiCalls";
-// import Customer from "./class/Customer"
-// import Booking from "./class/Booking"
-// import Room from "./class/Room"
+// import { Customer } from "./class/Customer"
+// import { Booking } from "./class/Booking"
+// import { Room } from "./class/Room"
+// import MyDatePicker from "./class/MyDatepicker"
+import MyDatePicker from './classes/MyDatePicker.js';
+
+const datePicker = new MyDatePicker('#datepicker');
+
+datePicker.init()
 
 //I want to be able to keep the right container hidden from view until the user searches I am using CSS visibility: hidden
 // document.querySelector('.containerRight').classList.add('hidden');
 // document.querySelector('.containerRight').classList.remove('hidden');
 
+// const homeButton = document.querySelector("");
+// const tripsButton = document.querySelector("");
+// const currencyPicker = document.querySelector("");
+// const calendar = document.querySelector("");
+// const roomTypeButton = document.querySelector("");
+// const searchButton =  document.querySelector("");
+// const bookButton = document.querySelector("");
 
-  //function to set a random image as the background from the image array above.
+// const MyDatePicker = require('/MyDatePicker.js')
+// const MyDatePicker = new MyDatepicker('#datepicker');
+
+
+//PROMISES TO HANDLE AND USE API
+// Promise.all(apiCalls)
+// .then(function(values) {
+//     const customerData = values[0].users;
+//     const bookingData = values[1].ingredients;
+//     const roomData = values[2].recipes;
+//     user = new User(usersData[0]);
+//     const userRecipeRepo = new RecipeRepository(usersData[0].recipesToCook, ingredientsData);
+//     user.recipesToCook = userRecipeRepo;
+//     mainRepository = new RecipeRepository(recipeData, ingredientsData);
+//     displayCards(mainRepository);
+//     buttonIndicateCurrentPage();
+// });
+
+
+//function to set a random image as the background from the image array above.
 document.addEventListener("DOMContentLoaded", function() {
 const images = ['eva-darron-oCdVtGFeDC0-unsplash.jpg', 'eva-darron-oCdVtGFeDC0-unsplash.jpg', 'dino-reichmuth-A5rCN8626Ck-unsplash.jpg', 'ross-parmly-rf6ywHVkrlY-unsplash.png', 'robert-lukeman-zNN6ubHmruI-unsplash.jpg', 'pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg', 'jack-anstey-XVoyX7l9ocY-unsplash.jpg'];
 let currentIndex = 4;
@@ -29,31 +61,3 @@ document.getElementById("background-image").style.backgroundImage = imgUrl;
   changeImage();
   setInterval(changeImage, 300000);
 })
-
-//this is the datepicker
-// $( function() {
-//     $( "#datepicker" ).datepicker();
-//   } );
-
-// Initialize the datepicker
-$('#datepicker').datepicker({
-    onSelect: function(dateText, inst) {
-      // Get the selected date as a Date object
-      var selectedDate = $(this).datepicker('getDate');
-      // Get the day of the month from the selected date
-      var dayOfMonth = selectedDate.getDate();
-      // Get the month from the selected date
-      var monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-      var monthName = monthNames[selectedDate.getMonth()];
-      // Get the year from the selected date
-      var year = selectedDate.getFullYear();
-      // Do something with the selected day, month and year, e.g. log them to the console
-      console.log('Selected day: ' + dayOfMonth);
-      console.log('Selected month: ' + monthName);
-      console.log('Selected year: ' + year);
-    }
-  });
-  
-  
-  
-  
