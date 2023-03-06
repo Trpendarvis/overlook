@@ -11,14 +11,12 @@ import './css/styles.css';
 // import MyDatePicker from "./class/MyDatepicker"
 import MyDatePicker from './classes/MyDatePicker.js';
 
-const datePicker = new MyDatePicker('#datepicker');
-
-datePicker.init()
 
 //I want to be able to keep the right container hidden from view until the user searches I am using CSS visibility: hidden
 // document.querySelector('.containerRight').classList.add('hidden');
 // document.querySelector('.containerRight').classList.remove('hidden');
 
+const datePicker = new MyDatePicker('#datepicker');
 // const homeButton = document.querySelector("");
 // const tripsButton = document.querySelector("");
 // const currencyPicker = document.querySelector("");
@@ -26,9 +24,6 @@ datePicker.init()
 // const roomTypeButton = document.querySelector("");
 // const searchButton =  document.querySelector("");
 // const bookButton = document.querySelector("");
-
-// const MyDatePicker = require('/MyDatePicker.js')
-// const MyDatePicker = new MyDatepicker('#datepicker');
 
 
 //PROMISES TO HANDLE AND USE API
