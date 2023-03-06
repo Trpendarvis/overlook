@@ -17,13 +17,13 @@ import MyDatePicker from './classes/MyDatePicker.js';
 // document.querySelector('.containerRight').classList.remove('hidden');
 
 const datePicker = new MyDatePicker('#datepicker');
-// const homeButton = document.querySelector("");
-// const tripsButton = document.querySelector("");
-// const currencyPicker = document.querySelector("");
-// const calendar = document.querySelector("");
-// const roomTypeButton = document.querySelector("");
-// const searchButton =  document.querySelector("");
-// const bookButton = document.querySelector("");
+// const homeButton = document.querySelector("#home-button");
+// const tripsButton = document.querySelector("#trips-button");
+// const currencyPicker = document.querySelector("#currency-dropdown");
+// const calendar = document.querySelector("#datepicker");
+// const roomTypeButton = document.querySelector("#radio-buttons");
+// const searchButton =  document.querySelector("#search-button");
+// const bookButton = document.querySelector("#booking-button");
 
 
 //PROMISES TO HANDLE AND USE API
