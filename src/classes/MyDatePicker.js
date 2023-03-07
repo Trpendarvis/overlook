@@ -1,4 +1,4 @@
-// import { Booking } from "./Booking"
+import { Bookings } from "./Bookings"
 
 class MyDatePicker {
   constructor(datepickerSelector, datesToCheck) {
@@ -10,31 +10,29 @@ class MyDatePicker {
   }
 
   init() {
-    $(this.datepickerSelector).datepicker({
-      onSelect: (dateText, inst) => {
-        const selectedDate = $(this.datepickerSelector).datepicker('getDate');
-
-        if (this.prevSelectedDate && selectedDate.getTime() === this.prevSelectedDate.getTime()) {
-          // Same date selected, deselect it
-          $(this.datepickerSelector).datepicker('setDate', null);
-          this.prevSelectedDate = null;
-          this.selectedDateStr = null;
-        } else {
-          // Different date selected, do something with it
-          const dayOfMonth = selectedDate.getDate();
-          const monthNumber = selectedDate.getMonth() + 1;
-          const year = selectedDate.getFullYear();
+      $(this.datepickerSelector).datepicker({
+        defaultDate: new Date('2022/01/01'),
+        onSelect: (dateText, inst) => {
+          const selectedDate = $(this.datepickerSelector).datepicker('getDate');
           
-          this.selectedDateStr = `${year}/${monthNumber}/${dayOfMonth}`;
-          console.log(this.selectedDateStr);
-          
-          this.prevSelectedDate = selectedDate;
-
-          // Call the public method to check if the selected date matches a date from the array
-          this.checkSelectedDatePublic();
+          // Check if the selected date is in the array of unavailable dates
+          const selectedDateStr = $.datepicker.formatDate('yy/mm/dd', selectedDate);
+          if (this.datesToCheck.includes(selectedDateStr)) {
+            this.displayNoRoomsAvailable();
+          } else {
+            // Set the selected date in the datepicker
+            const dayOfMonth = selectedDate.getDate();
+            const monthNumber = selectedDate.getMonth() + 1;
+            const year = selectedDate.getFullYear();
+            
+            this.selectedDateStr = `${year}/${monthNumber}/${dayOfMonth}`;
+            console.log(this.selectedDateStr);
+            
+            // Call the public method to check if the selected date matches a date from the array
+            this.checkSelectedDatePublic();
+          }
         }
-      }
-    });
+      });
 
     // Add event listener for Escape key to skip to the next element
     $(document).on('keydown', this.datepickerSelector, (e) => {
@@ -61,24 +59,61 @@ class MyDatePicker {
       }
     });
   }
-  checkSelectedDate() {
-    const datesToCheck = ['2023/3/6', '2023/3/10', '2023/3/15']; //this should be bookings.date? `${Booking.date}` findByDate(date)
-    const formatStr = 'YYYY/M/D';
   
-    const selectedDate = new Date(this.selectedDateStr);
-    const matches = datesToCheck.some(dateStr => {
-      const date = new Date(dateStr);
-      return date.getFullYear() === selectedDate.getFullYear() &&
-             date.getMonth() === selectedDate.getMonth() &&
-             date.getDate() === selectedDate.getDate();
-    });
+  displayNoRoomsAvailable() {
+    const datepicker = $(this.datepickerSelector);
+    const unavailableDay = datepicker.find(`a.ui-state-default[data-date="${this.selectedDateStr.split("/").join("")}"]`);
+    unavailableDay.addClass("highlight-unavailable-day");
   
-    if (matches) {
-      console.log(`The date ${this.selectedDateStr} matches a date in the array.`);
+    const message = "Sorry, there are no Rooms available this day.";
+    const messageDiv = $("<div>").text(message).addClass("no-rooms-available");
+  
+    const maxMessages = 3;
+    const existingMessages = $(".no-rooms-available").length;
+    const messageContainer = $(this.datepickerSelector).parent();
+  
+    if (existingMessages < maxMessages) {
+      messageContainer.append(messageDiv);
+      // Set a timer to remove the message after 2 seconds
+      setTimeout(() => {
+        messageDiv.remove();
+        unavailableDay.removeClass("highlight-unavailable-day");
+      }, 2000);
     } else {
-      console.log(`The date ${this.selectedDateStr} does not match any date in the array.`);
+      messageContainer.find(".no-rooms-available").first().remove();
+      messageContainer.append(messageDiv);
     }
   }
+  
+
+  
+  
+  checkSelectedDate() {
+    const bookingAPI = new Bookings();
+  
+    bookingAPI.getAllBookings().then(bookingData => {
+      const datesToCheck = bookingData.bookings.map(booking => {
+        const dateParts = booking.date.split('/');
+        return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+      });
+  
+      const selectedDate = new Date(this.selectedDateStr);
+      const matches = datesToCheck.some(date => {
+        return date.getFullYear() === selectedDate.getFullYear() &&
+               date.getMonth() === selectedDate.getMonth() &&
+               date.getDate() === selectedDate.getDate();
+      });
+  
+      if (matches) {
+        console.log(`The date ${this.selectedDateStr} matches a date in the array.`);
+        this.displayNoRoomsAvailable();
+      } else {
+        console.log(`The date ${this.selectedDateStr} does not match any date in the array.`);
+        $(".no-rooms-available").remove();
+      }
+    });
+  }
+  
   checkSelectedDatePublic() {
     this.checkSelectedDate();
   }

@@ -24,7 +24,7 @@ customers.getAllCustomers()
     .then(data => {
         console.log(data);
   });
-customers.findById(50)
+customers.findById(43)
   .then(customer => {
     console.log("????",customer);
   });
@@ -33,7 +33,7 @@ const booking = new Bookings();
 customers.getAllCustomers()
     .then(data => {
     console.log(data);
-    booking.bookingsForCustomer(50);
+    booking.bookingsForCustomer(43);
 });
 // //PROMISES TO HANDLE AND USE API
 // let customer
