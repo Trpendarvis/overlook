@@ -1,20 +1,16 @@
-// import Bookings from "./Bookings";
 import { Bookings } from "./Bookings";
-import { MyDatePicker } from './MyDatePicker.js';
+// import { MyDatePicker } from './MyDatePicker.js';
 
 class Customers {
   constructor(data) {
-    this.id = data.id; //this is the unique ID for the customer
+    this.id = data.id;
     this.name = data.name;
-    this.allBookings = []; //tracks all bookings from a user
-    this.upcomingBookings = []; //this will be compaired to the current date and if it is in the future it will be pushed into this array
-    this.pastBookings = []; //this will be compaired to the current date and if it is in the past it will be pushed into this array
-    this.totalSpent = 0; //this comes from the ROOMs data as costPerNight this needs to be added up to get the total 
-
+    this.allBookings = [];
+    this.upcomingBookings = [];
+    this.pastBookings = [];
   }
 
   getBookingdata(bookingData) {
-    console.log("im looking for this its bookings",bookingData)
     return bookingData.map((currentBooking) => {
       return new Bookings(currentBooking)
       })
@@ -56,8 +52,29 @@ class Customers {
     })
   }
 
+  findAvailableRooms(date, bookingData, roomData){
+    const unavailableRooms = bookingData.filter((currentBooking) => {
+      let formatDate = currentBooking.date.split('/')
+      formatDate = Number(formatedDate.join(''))
+      return formatedDate === date
+    })
+    let unavailableRoom = unavailableRooms.map((currentAvailablity) => {
+      return currentAvailablity.roomNumber
+    })
+    let availableRooms = roomData.reduce((acc, room) => {
+      if(!unavailableRoom.includes(room.roomNumber)) {
+        acc.push(room)
+      }
+      return acc
+    }, [])
+    return availableRooms
+  }
 
-
+  filterRoomByRoomType(roomsRoomType, availableRoom) {
+    return availableRoom.filter((currentRoom) => {
+      return currentRoom.roomType === roomsRoomType
+    })
+  }
 
   getCurrentDate() {
     let today = new Date();
@@ -75,10 +92,3 @@ class Customers {
 }
 
 export { Customers };
-
-// // const customers = [
-// //     {
-// //     "id": 1,
-// //     "name": "Leatha Ullrich"
-// //     },
-// // ]

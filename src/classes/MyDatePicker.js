@@ -4,7 +4,6 @@ import { getAPIData } from "../apiCalls";
 class MyDatePicker {
   constructor(datepickerSelector, datesToCheck) {
     this.datepickerSelector = datepickerSelector;
-    this.prevSelectedDate = null;
     this.selectedDateStr = null;
     this.datesToCheck = datesToCheck || [];
     this.init();

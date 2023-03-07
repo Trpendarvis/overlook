@@ -3,37 +3,46 @@ import { getAPIData } from "./apiCalls";
 import { Customers } from "./classes/Customers"
 import { Bookings } from "./classes/Bookings"
 import { Rooms } from "./classes/Rooms"
-// import { customers, bookings, rooms } from "./data/mockdata"
 import MyDatePicker from './classes/MyDatePicker.js';
+// import { customers, bookings, rooms } from "./data/mockdata"
 
 const bookingButton = document.querySelector("#booking-button");
 const tripsButton = document.querySelector("#trips-button");
 const searchButton =  document.querySelector("#search-button");
 // const bookButton = document.querySelector("#booking-button");
-// const radioButtons = document.querySelectorAll('input[type="radio"][name="radio"]');
 const currencyDropdown = document.querySelector('#currency-dropdown');
-// const residentialBtn = document.getElementById('radio1');
-// const singleBtn = document.getElementById('radio2');
-// const suiteBtn = document.getElementById('radio3');
-// const jrSuiteBtn = document.getElementById('radio4');
-
 
 let customersAPI
 let bookingsAPI
 let roomsAPI
-// let allBookings
 let currentCustomer
 let allRooms
+const customerId = 50 
 
-const customerId = 43 
-
-//urls for my API data
+////API STUFF////
 let customersURL = 'http://localhost:3001/api/v1/customers/'
 let customerURLID = `http://localhost:3001/api/v1/customers/${customerId}`;
 let bookingsURL = 'http://localhost:3001/api/v1/bookings/'
 let roomsURL = 'http://localhost:3001/api/v1/rooms/'
 fetchData([customersURL, bookingsURL, roomsURL])
 
+function fetchData(urls){
+    Promise.all([getAPIData(urls[0]),getAPIData(urls[1]),getAPIData(urls[2])])
+        .then(data => {
+            customersAPI = data[0]
+            bookingsAPI = data[1].bookings
+            roomsAPI = data[2].rooms
+
+            getNewCustomer(customersAPI)
+            getRooms(roomsAPI)
+            const myDatePicker = new MyDatePicker('#datepicker', bookingsAPI);
+        })
+        .catch(err => {
+            console.error('There was a problem fetching the data:', err);
+        });
+}
+
+////DOM STUFF////
 document.addEventListener('DOMContentLoaded', function() {
     // show the default containers
     document.getElementById('past-booking-container').classList.remove('hidden');
@@ -71,6 +80,84 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('upcoming-booking-container').classList.remove('hidden');
     });
 });
+document.addEventListener("DOMContentLoaded", function() {
+    const images = ['eva-darron-oCdVtGFeDC0-unsplash.jpg', 'eva-darron-oCdVtGFeDC0-unsplash.jpg', 'dino-reichmuth-A5rCN8626Ck-unsplash.jpg', 'ross-parmly-rf6ywHVkrlY-unsplash.png', 'robert-lukeman-zNN6ubHmruI-unsplash.jpg', 'pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg', 'jack-anstey-XVoyX7l9ocY-unsplash.jpg'];
+    let currentIndex = 4;
+    function changeImage() {
+        currentIndex++;
+        if(currentIndex >= images.length) {
+        currentIndex = 0;
+        }
+    const imgUrl = `url(images/${images[currentIndex]})`;
+    document.getElementById("background-image").style.backgroundImage = imgUrl;
+    }
+      changeImage();
+      setInterval(changeImage, 300000);
+});
+document.addEventListener("DOMContentLoaded", function() {
+    const images = ['eva-darron-oCdVtGFeDC0-unsplash.jpg', 'eva-darron-oCdVtGFeDC0-unsplash.jpg', 'dino-reichmuth-A5rCN8626Ck-unsplash.jpg', 'ross-parmly-rf6ywHVkrlY-unsplash.png', 'robert-lukeman-zNN6ubHmruI-unsplash.jpg', 'pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg', 'jack-anstey-XVoyX7l9ocY-unsplash.jpg'];
+    let currentIndex = 4;
+    function changeImage() {
+        currentIndex++;
+        if(currentIndex >= images.length) {
+        currentIndex = 0;
+        }
+        const imgUrl = `url(images/${images[currentIndex]})`;
+        document.getElementById("background-image").style.backgroundImage = imgUrl;
+        }
+          changeImage();
+          setInterval(changeImage, 300000);
+});    
+
+// const roomDetailContainer = document.querySelector('#room-detail-container');
+// function filterRoomsByType(type) {
+//   const filteredRooms = roomsAPI.filter(room => {
+//     const roomType = room.roomType.toLowerCase();
+//     return roomType.includes(type.toLowerCase());
+//   });
+//   // Clear any existing room detail content
+//   roomDetailContainer.innerHTML = '';
+//   // Loop through filtered rooms and create HTML elements to display each room's details
+//   filteredRooms.forEach(room => {
+//     const roomDetails = `
+//       <h2>Room ${room.number}</h2>
+//       <ul>
+//         <li>Room Type: ${room.roomType}</li>
+//         <li>Bidet: ${room.bidet ? 'Yes' : 'No'}</li>
+//         <li>Bed Size: ${room.bedSize}</li>
+//         <li>Number of Beds: ${room.numBeds}</li>
+//         <li>Cost per Night: ${room.costPerNight}</li>
+//       </ul>
+//     `;
+//     const roomElement = document.createElement('div');
+//     roomElement.innerHTML = roomDetails;
+//     roomDetailContainer.appendChild(roomElement);
+//   });
+
+//   // Display the book button
+//   const bookButton = document.querySelector('#book-button');
+//   bookButton.style.display = 'block';
+// }
+
+const radioContainer = document.querySelector('#radio-buttons');
+radioContainer.addEventListener('change', (event) => {
+  const selectedRoomType = event.target.value;
+  filterRoomsByType(selectedRoomType);
+});
+function filterRoomsByType(type) {
+  const filteredRooms = roomsAPI.filter(room => {
+    const roomType = room.roomType.toLowerCase();
+    return roomType.includes(type.toLowerCase());
+  });
+  console.log(filteredRooms);
+  // Do something with the filtered rooms, such as displaying them on the page
+}
+
+
+
+
+
+
 
 
 
@@ -107,43 +194,32 @@ currencyDropdown.addEventListener('change', () => {
 });
 
 
-const radioContainer = document.querySelector('#radio-buttons');
-radioContainer.addEventListener('change', (event) => {
-  const selectedRoomType = event.target.value;
-  filterRoomsByType(selectedRoomType);
-});
-function filterRoomsByType(type) {
-  const filteredRooms = roomsAPI.filter(room => {
-    const roomType = room.roomType.toLowerCase();
-    return roomType.includes(type.toLowerCase());
-  });
-  console.log(filteredRooms);
-  // Do something with the filtered rooms, such as displaying them on the page
-}
 
+// function displayBookingDetails(room, currency) {
+//     const costPerNight = room.costPerNight;
+//     const convertedPrice = convertCurrency(costPerNight, currency);
+//     const priceDisplay = `${currency.toUpperCase()} ${convertedPrice.toFixed(2)}`;
+    
+//     const pastBookingContainer = document.querySelector('#past-booking-container');
+//     const upcomingBookingContainer = document.querySelector('#upcoming-booking-container');
+    
+//     if (room.customerId === 50) {
+//       const pastBookingDetails = `
+//         <p>Room Details: ${room.roomType} - ${room.bedSize} bed(s)</p>
+//         <p>Cost per night: ${priceDisplay}</p>
+//       `;
+//       pastBookingContainer.innerHTML = pastBookingDetails;
+//     } else if (room.customerId === 50) {
+//       const upcomingBookingDetails = `
+//         <p>Room Details: ${room.roomType} - ${room.bedSize} bed(s)</p>
+//         <p>Cost per night: ${priceDisplay}</p>
+//       `;
+//       upcomingBookingContainer.innerHTML = upcomingBookingDetails;
+//     }
+//   }
   
 
-
-
-function fetchData(urls){
-    Promise.all([getAPIData(urls[0]),getAPIData(urls[1]),getAPIData(urls[2])])
-        .then(data => {
-            customersAPI = data[0]
-            // console.log("hellow?",customersAPI) //confirmed all data is coming through
-            bookingsAPI = data[1].bookings
-            // console.log("?123?",bookingsAPI)
-            roomsAPI = data[2].rooms
-
-            getNewCustomer(customersAPI)
-            getRooms(roomsAPI)
-            // allBookings = bookingsAPI.map(bookingData => new Bookings(bookingData));
-            // Create the MyDatePicker instance after allBookings is defined
-            const myDatePicker = new MyDatePicker('#datepicker', bookingsAPI);
-        })
-        .catch(err => {
-            console.error('There was a problem fetching the data:', err);
-        });
-}
+  
 
 
 function getNewCustomer(data) {
@@ -166,21 +242,7 @@ function getNewCustomer(data) {
     // }
     
 
-//function to set a random image as the background from the image array above.
-document.addEventListener("DOMContentLoaded", function() {
-const images = ['eva-darron-oCdVtGFeDC0-unsplash.jpg', 'eva-darron-oCdVtGFeDC0-unsplash.jpg', 'dino-reichmuth-A5rCN8626Ck-unsplash.jpg', 'ross-parmly-rf6ywHVkrlY-unsplash.png', 'robert-lukeman-zNN6ubHmruI-unsplash.jpg', 'pietro-de-grandi-T7K4aEPoGGk-unsplash.jpg', 'jack-anstey-XVoyX7l9ocY-unsplash.jpg'];
-let currentIndex = 4;
-function changeImage() {
-    currentIndex++;
-    if(currentIndex >= images.length) {
-    currentIndex = 0;
-    }
-const imgUrl = `url(images/${images[currentIndex]})`;
-document.getElementById("background-image").style.backgroundImage = imgUrl;
-}
-  changeImage();
-  setInterval(changeImage, 300000);
-})
+
 
 
 // // Get the customer's ID (in this case, we assume it is 1)
@@ -211,3 +273,17 @@ document.getElementById("background-image").style.backgroundImage = imgUrl;
 //       return
 //     })
 // }
+
+function getCurrentDate() {
+    let today = new Date();
+    let dayOfMonth = today.getDate();
+    let month = today.getMonth() + 1;
+    let year = today.getFullYear();
+    if (dayOfMonth < 10) {
+      dayOfMonth = "0" + dayOfMonth;
+    }
+    if (month < 10) {
+      month = "0" + month;
+    }
+    return Number(year + month + dayOfMonth);
+  }
