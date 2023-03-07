@@ -20,7 +20,9 @@ let roomsAPI
 let allBookings
 let currentCustomer
 let allRooms
+
 const customerId = 50 
+
 //urls for my API data
 let customersURL = 'http://localhost:3001/api/v1/customers/'
 let customerURLID = `http://localhost:3001/api/v1/customers/${customerId}`;
@@ -67,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-const myDatePicker = new MyDatePicker('#datepicker');
+// const myDatePicker = new MyDatePicker('#datepicker');
 
 // //PROMISES TO HANDLE AND USE API
 
@@ -79,25 +81,37 @@ const myDatePicker = new MyDatePicker('#datepicker');
 
 
 function fetchData(urls){
-Promise.all([getAPIData(urls[0]),getAPIData(urls[1]),getAPIData(urls[2])])
-    .then(data => {
-        customersAPI = data[0]
-        bookingsAPI = data[1].bookings
-        roomsAPI = data[2].rooms
-        getNewCustomer(customersAPI)
-        getRooms(roomsAPI)
+    Promise.all([getAPIData(urls[0]),getAPIData(urls[1]),getAPIData(urls[2])])
+        .then(data => {
+            customersAPI = data[0]
+            // console.log("hellow?",customersAPI) //confirmed all data is coming through
+            bookingsAPI = data[1].bookings
+            // console.log("?123?",bookingsAPI)
+            roomsAPI = data[2].rooms
 
-    })
-    .catch(err => {
-    console.error('There was a problem fetching the data:', err);
-  });
+            getNewCustomer(customersAPI)
+            getRooms(roomsAPI)
+
+            // Create the MyDatePicker instance after allBookings is defined
+            const myDatePicker = new MyDatePicker('#datepicker', allBookings);
+        })
+        .catch(err => {
+            console.error('There was a problem fetching the data:', err);
+        });
 }
 
-function getNewCustomer(data){
-    currentCustomer = new Customers(data)
-    allBookings = currentCustomer.getBookingdata(bookingsAPI)
-    return currentCustomer
-}
+
+function getNewCustomer(data) {
+    currentCustomer = new Customers(data);
+    currentCustomer.allBookings = currentCustomer.getBookingdata(bookingsAPI);
+    return currentCustomer;
+  }
+
+// function getNewCustomer(data){
+//     currentCustomer = new Customers(data)
+//     allBookings = currentCustomer.getBookingdata(bookingsAPI)
+//     return currentCustomer
+// }
 
 function getRooms(data){
     allRooms = data.map((currentBooking) => {

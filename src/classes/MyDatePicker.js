@@ -6,6 +6,8 @@ class MyDatePicker {
     this.prevSelectedDate = null;
     this.selectedDateStr = null;
     this.datesToCheck = datesToCheck || [];
+    // this.bookingAPI = bookingsAPI;
+
     this.init();
   }
 
@@ -85,14 +87,34 @@ class MyDatePicker {
     }
   }
   
-
+  // checkSelectedDate() {
+  //   allBookings.then(bookingsData => {
+  //     const datesToCheck = bookingsData.map(booking => {
+  //       const dateParts = booking.date.split('/');
+  //       return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+  //     });
   
+  //     const selectedDate = new Date(this.selectedDateStr);
+  //     const matches = datesToCheck.some(date => {
+  //       return date.getFullYear() === selectedDate.getFullYear() &&
+  //              date.getMonth() === selectedDate.getMonth() &&
+  //              date.getDate() === selectedDate.getDate();
+  //     });
   
+  //     if (matches) {
+  //       console.log(`The date ${this.selectedDateStr} matches a date in the array.`);
+  //       this.displayNoRoomsAvailable();
+  //     } else {
+  //       console.log(`The date ${this.selectedDateStr} does not match any date in the array.`);
+  //       $(".no-rooms-available").remove();
+  //     }
+  //   }).catch(error => console.error(error));
+  // }
   checkSelectedDate() {
-    const bookingAPI = new Bookings();
-  
-    bookingAPI.getAllBookings().then(bookingData => {
-      const datesToCheck = bookingData.bookings.map(booking => {
+    const bookingsAPI = new Bookings({id: null, userID: null, date: this.selectedDateStr, roomNumber: null});
+    console.log("WTF",bookingsAPI)
+    bookingsAPI.getAllBookings().then(bookingData => {
+      const datesToCheck = bookingData.map(booking => {
         const dateParts = booking.date.split('/');
         return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
       });
@@ -114,11 +136,21 @@ class MyDatePicker {
     });
   }
   
+  getBookingdata(data) {
+    return data.filter((booking) => booking.userID === this.id);
+  }
+
   checkSelectedDatePublic() {
     this.checkSelectedDate();
   }
 }
 
 export default MyDatePicker;
+
+
+
+
+
+
 
   
