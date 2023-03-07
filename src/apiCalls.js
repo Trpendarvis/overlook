@@ -1,5 +1,26 @@
-// let apiCalls; //this will let me use this in scripts as a var
-// import { Customers } from "./classes/Customers"
+let customersData = 'http://localhost:3001/api/v1/customers/'
+let customerData = `http://localhost:3001/api/v1/customers/${$id}`
+let bookingsData = 'http://localhost:3001/api/v1/bookings/'
+let roomsData = 'http://localhost:3001/api/v1/rooms/'
+
+const getAPIData = (url) => {
+    return fetch(url)
+    .then(response => {
+        if(!response.ok){
+            throw new Error(`Error ${response.status}, please reload and try again`)
+        }
+        return response.json()
+    
+    })
+    .catch(err => {
+        console.log("An error happened", err)
+    })
+}
+
+export { getAPIData }
+
+
+
 
 // // const customerData = fetch('http://localhost:3001/api/v1/customers/')
 // //                         //http://localhost:3001/api/v1/customers/<id> where<id> will be a number of a customer’s id `${customer.id}`
@@ -44,90 +65,3 @@
 //     .then(data => console.log(data))
 //     .catch(err => alert(`Server Error: ${err}. Please try again later.`))
 // }
-
-
-// class API {
-//     constructor(baseUrl) {
-//       this.baseUrl = baseUrl;
-//     }
-  
-//     makeRequest(endpoint) {
-//       return fetch(`${this.baseUrl}/${endpoint}`)
-//         .then(response => {
-//           if (!response.ok) {
-//             throw new Error(`Network response was not ok (${response.status} ${response.statusText})`);
-//           }
-  
-//           return response.json();
-//         });
-//     }
-  
-//     getAllCustomers() {
-//       return this.makeRequest('customers');
-//     }
-  
-//     getCustomerById(id) {
-//       return this.makeRequest(`customers/${id}`);
-//     }
-  
-//     getAllRooms() {
-//       return this.makeRequest('rooms');
-//     }
-  
-//     getAllBookings() {
-//       return this.makeRequest('bookings');
-//     }
-  
-//     getBookingsForCustomer(customerId) {
-//       return this.getAllBookings()
-//         .then(bookings => bookings.filter(booking => booking.userID === customerId));
-//     }
-//   }
-  
-//   class Customers {
-//     constructor(api) {
-//       this.api = api;
-//     }
-  
-//     getAllCustomers() {
-//       return this.api.makeRequest('customers');
-//     }
-  
-//     getCustomerById(id) {
-//       return this.api.makeRequest(`customers/${id}`);
-//     }
-//   }
-  
-//   class Rooms {
-//     constructor(api) {
-//       this.api = api;
-//     }
-  
-//     getAllRooms() {
-//       return this.api.makeRequest('rooms');
-//     }
-//   }
-  
-//   class Bookings {
-//     constructor(api) {
-//       this.api = api;
-//     }
-  
-//     getAllBookings() {
-//       return this.api.makeRequest('bookings');
-//     }
-  
-//     getBookingsForCustomer(customerId) {
-//       return this.api.getBookingsForCustomer(customerId);
-//     }
-//   }
-  
-//   module.exports = {
-//     API,
-//     Customers,
-//     Rooms,
-//     Bookings
-//   };
-  
-
-// // export { apiCalls }

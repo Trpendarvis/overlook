@@ -6,9 +6,6 @@ import { Rooms } from "./classes/Rooms"
 // import { customers, bookings, rooms } from "./data/mockdata"
 import MyDatePicker from './classes/MyDatePicker.js';
 
-//I want to be able to keep the right container hidden from view until the user searches I am using CSS visibility: hidden
-// document.querySelector('.containerRight').classList.add('hidden');
-// document.querySelector('.containerRight').classList.remove('hidden');
 const bookingButton = document.querySelector("#booking-button");
 const tripsButton = document.querySelector("#trips-button");
 const currencyPicker = document.querySelector("#currency-dropdown");
@@ -57,39 +54,9 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   
-
-
-
-  
-
-
-
 const myDatePicker = new MyDatePicker('#datepicker');
 
 // //PROMISES TO HANDLE AND USE API
-
-// const customers = new Customers();
-// customers.getAllCustomers()
-//     .then(data => {
-//         console.log(data);
-//   });
-// customers.findById(43)
-//   .then(data => {
-//     console.log("????",data);
-//   });
-
-// const booking = new Bookings();
-// customers.getAllCustomers()
-//     .then(data => {
-//     console.log(data);
-//     booking.bookingsForCustomer(43);
-// });
-
-// const rooms = new Rooms();
-// rooms.getRooms()
-//   .then(data => {
-//     console.log(data);
-//   });
 
 const customerId = 50;
 
