@@ -19,6 +19,7 @@ let bookingsAPI
 let roomsAPI
 let allBookings
 let currentCustomer
+let allRooms
 
 //urls for my API data
 let customersURL = 'http://localhost:3001/api/v1/customers/'
@@ -71,9 +72,9 @@ const myDatePicker = new MyDatePicker('#datepicker');
 
 const customerId = 50;
 
-const customers = new Customers();
-const bookings = new Bookings();
-const rooms = new Rooms();
+// const customers = new Customers(customersAPI);
+// const bookings = new Bookings();
+// const rooms = new Rooms();
 
 
 function fetchData(urls){
@@ -89,18 +90,6 @@ Promise.all([getAPIData(urls[0]),getAPIData(urls[1]),getAPIData(urls[2])])
     .catch(err => {
     console.error('There was a problem fetching the data:', err);
   });
-//   customers.getAllCustomers(),
-//   customers.findById(customerId),
-//   bookings.bookingsForCustomer(customerId),
-//   rooms.getRooms(),
-// .then(([allCustomers, customerById, bookingsForCustomer, allRooms]) => {
-// //   console.log('All Customers:', allCustomers);
-// //   console.log('Customer by ID:', customerById);
-// //   console.log('Bookings for Customer:', bookingsForCustomer);
-// //   console.log('All Rooms:', allRooms);
-// }).catch(error => {
-//   console.error('There was a problem fetching the data:', error);
-// });
 }
 
 function getNewCustomer(data){
@@ -111,8 +100,11 @@ function getNewCustomer(data){
 
 function getRooms(data){
     allRooms = data.map((currentBooking) => {
+        console.log("all rooms!?", allRooms)
         return new Rooms(currentBooking)
     })
+    console.log(allRooms);
+    return allRooms;
 }
 
 

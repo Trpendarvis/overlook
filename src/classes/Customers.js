@@ -1,4 +1,5 @@
-import Bookings from "./Bookings";
+// import Bookings from "./Bookings";
+import { Bookings } from "./Bookings";
 
 class Customers {
   constructor(data) {
