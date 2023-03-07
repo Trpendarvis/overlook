@@ -13,7 +13,7 @@ class Customers {
 
 
 getBookingdata(bookingData) {
-  console.log("im looking for this",bookingData)
+  console.log("im looking for this its bookings",bookingData)
   return bookingData.map((currentBooking) => {
     return new Bookings(currentBooking)
     })

@@ -20,10 +20,10 @@ let roomsAPI
 let allBookings
 let currentCustomer
 let allRooms
-
+const customerId = 50 
 //urls for my API data
 let customersURL = 'http://localhost:3001/api/v1/customers/'
-// let customerData = `http://localhost:3001/api/v1/customers/${$id}`
+let customerURLID = `http://localhost:3001/api/v1/customers/${customerId}`;
 let bookingsURL = 'http://localhost:3001/api/v1/bookings/'
 let roomsURL = 'http://localhost:3001/api/v1/rooms/'
 fetchData([customersURL, bookingsURL, roomsURL])
@@ -32,48 +32,49 @@ document.addEventListener('DOMContentLoaded', function() {
     // show the default containers
     document.getElementById('past-booking-container').classList.remove('hidden');
     document.getElementById('upcoming-booking-container').classList.remove('hidden');
-  
+    
     // set up event listeners for the buttons
     bookingButton.addEventListener('click', function() {
         console.log("YAY I GOT PRESSED",bookingButton)
-      // hide the default containers
-      document.getElementById('past-booking-container').classList.add('hidden');
-      document.getElementById('upcoming-booking-container').classList.add('hidden');
-      // show the booking-related containers
-      document.getElementById('datepicker-container').classList.remove('hidden');
-      searchButton.classList.remove('hidden');
-      document.getElementById('room-detail-container').classList.remove('hidden');
+        // hide the default containers
+        document.getElementById('past-booking-container').classList.add('hidden');
+        document.getElementById('upcoming-booking-container').classList.add('hidden');
+        // show the booking-related containers
+        document.getElementById('datepicker-container').classList.remove('hidden');
+        searchButton.classList.remove('hidden');
+        document.getElementById('room-detail-container').classList.remove('hidden');
     });
-  
-    tripsButton.addEventListener('click', function() {
-      // hide the booking-related containers
-      document.getElementById('datepicker-container').classList.add('hidden');
-      searchButton.classList.add('hidden');
-      document.getElementById('room-detail-container').classList.add('hidden');
-      // show the default containers
-      document.getElementById('past-booking-container').classList.remove('hidden');
-      document.getElementById('upcoming-booking-container').classList.remove('hidden');
-    });
-  
-    searchButton.addEventListener('click', function() {
-      // hide the search-related containers
-      document.getElementById('datepicker-container').classList.add('hidden');
-      document.getElementById('room-detail-container').classList.add('hidden');
-      searchButton.classList.add('hidden');
-      // show the booking-related containers
-      document.getElementById('past-booking-container').classList.remove('hidden');
-      document.getElementById('upcoming-booking-container').classList.remove('hidden');
-    });
-  });
     
+    tripsButton.addEventListener('click', function() {
+        // hide the booking-related containers
+        document.getElementById('datepicker-container').classList.add('hidden');
+        searchButton.classList.add('hidden');
+        document.getElementById('room-detail-container').classList.add('hidden');
+        // show the default containers
+        document.getElementById('past-booking-container').classList.remove('hidden');
+        document.getElementById('upcoming-booking-container').classList.remove('hidden');
+    });
+    
+    searchButton.addEventListener('click', function() {
+        // hide the search-related containers
+        document.getElementById('datepicker-container').classList.add('hidden');
+        document.getElementById('room-detail-container').classList.add('hidden');
+        searchButton.classList.add('hidden');
+        // show the booking-related containers
+        document.getElementById('past-booking-container').classList.remove('hidden');
+        document.getElementById('upcoming-booking-container').classList.remove('hidden');
+    });
+});
+
+
 const myDatePicker = new MyDatePicker('#datepicker');
 
 // //PROMISES TO HANDLE AND USE API
 
-const customerId = 50;
+// const customerId = 50; //this is the set user that needs to log in
 
 // const customers = new Customers(customersAPI);
-// const bookings = new Bookings();
+// const bookings = new Bookings(bookingAPI);
 // const rooms = new Rooms();
 
 
@@ -100,10 +101,9 @@ function getNewCustomer(data){
 
 function getRooms(data){
     allRooms = data.map((currentBooking) => {
-        console.log("all rooms!?", allRooms)
         return new Rooms(currentBooking)
     })
-    console.log(allRooms);
+    console.log("all rooms!?",allRooms);
     return allRooms;
 }
 
