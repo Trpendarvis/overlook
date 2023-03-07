@@ -1,14 +1,11 @@
 import './css/styles.css';
-// import { apiCalls } from "./apiCalls";
+import { getAPIData } from "./apiCalls";
 import { Customers } from "./classes/Customers"
 import { Bookings } from "./classes/Bookings"
-// import { Room } from "./classes/Room"
+import { Rooms } from "./classes/Rooms"
 // import { customers, bookings, rooms } from "./data/mockdata"
 import MyDatePicker from './classes/MyDatePicker.js';
 
-//I want to be able to keep the right container hidden from view until the user searches I am using CSS visibility: hidden
-// document.querySelector('.containerRight').classList.add('hidden');
-// document.querySelector('.containerRight').classList.remove('hidden');
 const bookingButton = document.querySelector("#booking-button");
 const tripsButton = document.querySelector("#trips-button");
 const currencyPicker = document.querySelector("#currency-dropdown");
@@ -17,79 +14,98 @@ const roomTypeButton = document.querySelector("#radio-buttons");
 const searchButton =  document.querySelector("#search-button");
 // const bookButton = document.querySelector("#booking-button");
 
+let customersAPI
+let bookingsAPI
+let roomsAPI
+let allBookings
+let currentCustomer
+let allRooms
+const customerId = 50 
+//urls for my API data
+let customersURL = 'http://localhost:3001/api/v1/customers/'
+let customerURLID = `http://localhost:3001/api/v1/customers/${customerId}`;
+let bookingsURL = 'http://localhost:3001/api/v1/bookings/'
+let roomsURL = 'http://localhost:3001/api/v1/rooms/'
+fetchData([customersURL, bookingsURL, roomsURL])
 
 document.addEventListener('DOMContentLoaded', function() {
     // show the default containers
     document.getElementById('past-booking-container').classList.remove('hidden');
     document.getElementById('upcoming-booking-container').classList.remove('hidden');
-  
+    
     // set up event listeners for the buttons
     bookingButton.addEventListener('click', function() {
         console.log("YAY I GOT PRESSED",bookingButton)
-      // hide the default containers
-      document.getElementById('past-booking-container').classList.add('hidden');
-      document.getElementById('upcoming-booking-container').classList.add('hidden');
-      // show the booking-related containers
-      document.getElementById('datepicker-container').classList.remove('hidden');
-      searchButton.classList.remove('hidden');
-      document.getElementById('room-detail-container').classList.remove('hidden');
+        // hide the default containers
+        document.getElementById('past-booking-container').classList.add('hidden');
+        document.getElementById('upcoming-booking-container').classList.add('hidden');
+        // show the booking-related containers
+        document.getElementById('datepicker-container').classList.remove('hidden');
+        searchButton.classList.remove('hidden');
+        document.getElementById('room-detail-container').classList.remove('hidden');
     });
-  
+    
     tripsButton.addEventListener('click', function() {
-      // hide the booking-related containers
-      document.getElementById('datepicker-container').classList.add('hidden');
-      searchButton.classList.add('hidden');
-      document.getElementById('room-detail-container').classList.add('hidden');
-      // show the default containers
-      document.getElementById('past-booking-container').classList.remove('hidden');
-      document.getElementById('upcoming-booking-container').classList.remove('hidden');
+        // hide the booking-related containers
+        document.getElementById('datepicker-container').classList.add('hidden');
+        searchButton.classList.add('hidden');
+        document.getElementById('room-detail-container').classList.add('hidden');
+        // show the default containers
+        document.getElementById('past-booking-container').classList.remove('hidden');
+        document.getElementById('upcoming-booking-container').classList.remove('hidden');
     });
-  
+    
     searchButton.addEventListener('click', function() {
-      // hide the search-related containers
-      document.getElementById('datepicker-container').classList.add('hidden');
-      document.getElementById('room-detail-container').classList.add('hidden');
-      searchButton.classList.add('hidden');
-      // show the booking-related containers
-      document.getElementById('past-booking-container').classList.remove('hidden');
-      document.getElementById('upcoming-booking-container').classList.remove('hidden');
+        // hide the search-related containers
+        document.getElementById('datepicker-container').classList.add('hidden');
+        document.getElementById('room-detail-container').classList.add('hidden');
+        searchButton.classList.add('hidden');
+        // show the booking-related containers
+        document.getElementById('past-booking-container').classList.remove('hidden');
+        document.getElementById('upcoming-booking-container').classList.remove('hidden');
     });
-  });
-  
-  
-
-
-
-  
-
+});
 
 
 const myDatePicker = new MyDatePicker('#datepicker');
 
-const customers = new Customers();
-customers.getAllCustomers()
-    .then(data => {
-        console.log(data);
-  });
-customers.findById(43)
-  .then(customer => {
-    console.log("????",customer);
-  });
-
-const booking = new Bookings();
-customers.getAllCustomers()
-    .then(data => {
-    console.log(data);
-    booking.bookingsForCustomer(43);
-});
 // //PROMISES TO HANDLE AND USE API
-// let customer
-// Promise.all()
-// .then(function(data) {
-//     const getAllCustomers = data[0].customers
-//     const findCustomerById = data[1].customers
-//     customer = new Customers(getAllCustomers[0])
-// })
+
+// const customerId = 50; //this is the set user that needs to log in
+
+// const customers = new Customers(customersAPI);
+// const bookings = new Bookings(bookingAPI);
+// const rooms = new Rooms();
+
+
+function fetchData(urls){
+Promise.all([getAPIData(urls[0]),getAPIData(urls[1]),getAPIData(urls[2])])
+    .then(data => {
+        customersAPI = data[0]
+        bookingsAPI = data[1].bookings
+        roomsAPI = data[2].rooms
+        getNewCustomer(customersAPI)
+        getRooms(roomsAPI)
+
+    })
+    .catch(err => {
+    console.error('There was a problem fetching the data:', err);
+  });
+}
+
+function getNewCustomer(data){
+    currentCustomer = new Customers(data)
+    allBookings = currentCustomer.getBookingdata(bookingsAPI)
+    return currentCustomer
+}
+
+function getRooms(data){
+    allRooms = data.map((currentBooking) => {
+        return new Rooms(currentBooking)
+    })
+    console.log("all rooms!?",allRooms);
+    return allRooms;
+}
 
 
 //function to set a random image as the background from the image array above.
