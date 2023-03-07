@@ -8,16 +8,20 @@ import MyDatePicker from './classes/MyDatePicker.js';
 
 const bookingButton = document.querySelector("#booking-button");
 const tripsButton = document.querySelector("#trips-button");
-const currencyPicker = document.querySelector("#currency-dropdown");
-const calendar = document.querySelector("#datepicker");
-const roomTypeButton = document.querySelector("#radio-buttons");
 const searchButton =  document.querySelector("#search-button");
 // const bookButton = document.querySelector("#booking-button");
+// const radioButtons = document.querySelectorAll('input[type="radio"][name="radio"]');
+const currencyDropdown = document.querySelector('#currency-dropdown');
+// const residentialBtn = document.getElementById('radio1');
+// const singleBtn = document.getElementById('radio2');
+// const suiteBtn = document.getElementById('radio3');
+// const jrSuiteBtn = document.getElementById('radio4');
+
 
 let customersAPI
 let bookingsAPI
 let roomsAPI
-let allBookings
+// let allBookings
 let currentCustomer
 let allRooms
 
@@ -67,6 +71,59 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('upcoming-booking-container').classList.remove('hidden');
     });
 });
+
+
+
+currencyDropdown.addEventListener('change', () => {
+  const selectedCurrency = currencyDropdown.value;
+  const roomsWithConvertedPrices = roomsAPI.map(room => {
+    let convertedPrice = room.costPerNight;
+    switch (selectedCurrency) {
+      case 'usd':
+        convertedPrice = room.costPerNight;
+        break;
+      case 'eur':
+        convertedPrice = room.costPerNight * 0.83; // convert to euros
+        break;
+      case 'gbp':
+        convertedPrice = room.costPerNight * 0.72; // convert to pounds
+        break;
+      case 'jpy':
+        convertedPrice = room.costPerNight * 89.54; // convert to yen
+        break;
+      case 'aud':
+        convertedPrice = room.costPerNight * 1.29; // convert to AUD
+        break;
+      default:
+        convertedPrice = room.costPerNight;
+    }
+    return {
+      ...room,
+      costPerNight: convertedPrice
+    };
+  });
+  console.log(roomsWithConvertedPrices);
+  // Do something with the converted prices, such as displaying them on the page
+});
+
+
+const radioContainer = document.querySelector('#radio-buttons');
+radioContainer.addEventListener('change', (event) => {
+  const selectedRoomType = event.target.value;
+  filterRoomsByType(selectedRoomType);
+});
+function filterRoomsByType(type) {
+  const filteredRooms = roomsAPI.filter(room => {
+    const roomType = room.roomType.toLowerCase();
+    return roomType.includes(type.toLowerCase());
+  });
+  console.log(filteredRooms);
+  // Do something with the filtered rooms, such as displaying them on the page
+}
+
+  
+
+
 
 function fetchData(urls){
     Promise.all([getAPIData(urls[0]),getAPIData(urls[1]),getAPIData(urls[2])])
