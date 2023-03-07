@@ -3,10 +3,10 @@
 
 class Bookings {
   constructor(data) {
-    this.id = data && data.id;
-    this.userID = data && data.userID;
-    this.date = data && data.date;
-    this.roomNumber = data && data.roomNumber;
+    this.id = data.id;
+    this.userID = data.userID;
+    this.date = data.date;
+    this.roomNumber = data.roomNumber;
     this.bookingDate = 0;
   }
 

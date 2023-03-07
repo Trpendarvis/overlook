@@ -26,57 +26,38 @@ class Customers {
     })
   } 
 
-  // getPastBookings(bookingData) {
-  //   let getUpcomingBookings
-  //   let currentDate = this.getCurrentDate()
-  //   this.pastBookings = bookingData.filter((currentBooking) => {
-      
-  //   })
-  // }
-  // checkSelectedDate() {
-  //   const bookingAPI = new Bookings({ id: null, userID: null, date: this.selectedDateStr, roomNumber: null });
-    
-  //   bookingAPI.getAllBookings().then(bookingData => {
-  //     const datesToCheck = bookingData.bookings.map(booking => {
-  //       const dateParts = booking.date.split('/');
-  //       return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-  //     });
-  
-  //     const selectedDate = new Date(this.selectedDateStr);
-  //     const matches = datesToCheck.some(date => {
-  //       return date.getFullYear() === selectedDate.getFullYear() &&
-  //              date.getMonth() === selectedDate.getMonth() &&
-  //              date.getDate() === selectedDate.getDate();
-  //     });
-  
-  //     if (matches) {
-  //       console.log(`The date ${this.selectedDateStr} matches a date in the array.`);
-  //       this.displayNoRoomsAvailable();
-  //     } else {
-  //       console.log(`The date ${this.selectedDateStr} does not match any date in the array.`);
-  //       $(".no-rooms-available").remove();
-  //     }
-  //   });
-  // }
-  
-  findPastBookings(bookingData) {
-    let currentDate = this.getCurrentDate();
-    
-    return bookingData.filter((booking) => {
-      let bookingDate = new Date(booking.date);
-      return booking.userID === this.currentCustomerId && bookingDate < currentDate;
-    });
+  getPastBookings(bookingData) {
+    let bookingIsUpcoming
+    let currentDate = this.getCurrentDate()
+    this.pastBookings = bookingData.filter((currentBooking) => {
+      let selectedDate = currentBooking.date.split('/')
+      selectedDate = Number(selectedDate.join(''))
+      if(selectedDate >= currentDate) {
+        bookingIsUpcoming = true
+      } else {
+        bookingIsUpcoming = false
+      }
+      return currentBooking.userID === this.id && !bookingIsUpcoming
+    })
   }
 
-  findUpcomingBookings(bookingData) {
-    let currentDate = this.getCurrentDate();
-    
-    return bookingData.filter((booking) => {
-      let bookingDate = new Date(booking.date);
-      console.log("HEY yOu",bookingDate)
-      return booking.userID === this.currentCustomerId && bookingDate >= currentDate;
-    });
+  getUpcomingBookings(bookingData) {
+    let bookingIsUpcoming
+    let currentDate = this.getCurrentDate()
+    this.upcomingBookings = bookingData.filter((currentBooking) => {
+      let selectedDate = currentBooking.date.split('/')
+      selectedDate = Number(selectedDate.join(''))
+      if(selectedDate >= currentDate) {
+        bookingIsUpcoming = true
+      } else {
+        bookingIsUpcoming = false
+      }
+      return currentBooking.userID === this.id && !bookingIsUpcoming
+    })
   }
+
+
+
 
   getCurrentDate() {
     let today = new Date();
@@ -91,40 +72,9 @@ class Customers {
     }
     return Number(year + month + dayOfMonth);
   }
- 
 }
 
-
 export { Customers };
-
-//   getAllCustomers() {
-//     return fetch('http://localhost:3001/api/v1/customers')
-//       .then(response => {
-//         // console.log("!!!!",response);
-//         return response.json();
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         return [];
-//       });
-//   }
-
-//   findById(id) {
-//     return fetch(`http://localhost:3001/api/v1/customers/${id}`)
-//       .then(response => {
-//         // console.log(response);
-//         return response.json();
-//       })
-//       .then(customer => {
-//         return customer;
-//       })
-//       .catch(err => {
-//         console.log(err);
-//         return null;
-//       });
-//   }
-
-
 
 // // const customers = [
 // //     {

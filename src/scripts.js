@@ -68,18 +68,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-
-// const myDatePicker = new MyDatePicker('#datepicker');
-
-// //PROMISES TO HANDLE AND USE API
-
-// const customerId = 50; //this is the set user that needs to log in
-
-// const customers = new Customers(customersAPI);
-// const bookings = new Bookings(bookingAPI);
-// const rooms = new Rooms();
-
-
 function fetchData(urls){
     Promise.all([getAPIData(urls[0]),getAPIData(urls[1]),getAPIData(urls[2])])
         .then(data => {
@@ -91,9 +79,9 @@ function fetchData(urls){
 
             getNewCustomer(customersAPI)
             getRooms(roomsAPI)
-
+            // allBookings = bookingsAPI.map(bookingData => new Bookings(bookingData));
             // Create the MyDatePicker instance after allBookings is defined
-            const myDatePicker = new MyDatePicker('#datepicker', allBookings);
+            const myDatePicker = new MyDatePicker('#datepicker', bookingsAPI);
         })
         .catch(err => {
             console.error('There was a problem fetching the data:', err);
@@ -107,20 +95,19 @@ function getNewCustomer(data) {
     return currentCustomer;
   }
 
-// function getNewCustomer(data){
-//     currentCustomer = new Customers(data)
-//     allBookings = currentCustomer.getBookingdata(bookingsAPI)
-//     return currentCustomer
-// }
-
-function getRooms(data){
-    allRooms = data.map((currentBooking) => {
-        return new Rooms(currentBooking)
-    })
-    console.log("all rooms!?",allRooms);
-    return allRooms;
-}
-
+  function getRooms(data){
+      allRooms = data.map((currentBooking) => {
+          return new Rooms(currentBooking)
+        })
+        console.log("all rooms!?",allRooms);
+        return allRooms;
+    }
+    // function getNewCustomer(data){
+    //     currentCustomer = new Customers(data)
+    //     allBookings = currentCustomer.getBookingdata(bookingsAPI)
+    //     return currentCustomer
+    // }
+    
 
 //function to set a random image as the background from the image array above.
 document.addEventListener("DOMContentLoaded", function() {
