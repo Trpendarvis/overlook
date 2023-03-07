@@ -46,4 +46,88 @@
 // }
 
 
-// export { apiCalls }
+// class API {
+//     constructor(baseUrl) {
+//       this.baseUrl = baseUrl;
+//     }
+  
+//     makeRequest(endpoint) {
+//       return fetch(`${this.baseUrl}/${endpoint}`)
+//         .then(response => {
+//           if (!response.ok) {
+//             throw new Error(`Network response was not ok (${response.status} ${response.statusText})`);
+//           }
+  
+//           return response.json();
+//         });
+//     }
+  
+//     getAllCustomers() {
+//       return this.makeRequest('customers');
+//     }
+  
+//     getCustomerById(id) {
+//       return this.makeRequest(`customers/${id}`);
+//     }
+  
+//     getAllRooms() {
+//       return this.makeRequest('rooms');
+//     }
+  
+//     getAllBookings() {
+//       return this.makeRequest('bookings');
+//     }
+  
+//     getBookingsForCustomer(customerId) {
+//       return this.getAllBookings()
+//         .then(bookings => bookings.filter(booking => booking.userID === customerId));
+//     }
+//   }
+  
+//   class Customers {
+//     constructor(api) {
+//       this.api = api;
+//     }
+  
+//     getAllCustomers() {
+//       return this.api.makeRequest('customers');
+//     }
+  
+//     getCustomerById(id) {
+//       return this.api.makeRequest(`customers/${id}`);
+//     }
+//   }
+  
+//   class Rooms {
+//     constructor(api) {
+//       this.api = api;
+//     }
+  
+//     getAllRooms() {
+//       return this.api.makeRequest('rooms');
+//     }
+//   }
+  
+//   class Bookings {
+//     constructor(api) {
+//       this.api = api;
+//     }
+  
+//     getAllBookings() {
+//       return this.api.makeRequest('bookings');
+//     }
+  
+//     getBookingsForCustomer(customerId) {
+//       return this.api.getBookingsForCustomer(customerId);
+//     }
+//   }
+  
+//   module.exports = {
+//     API,
+//     Customers,
+//     Rooms,
+//     Bookings
+//   };
+  
+
+// // export { apiCalls }

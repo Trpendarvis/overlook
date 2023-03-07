@@ -2,7 +2,7 @@ import './css/styles.css';
 // import { apiCalls } from "./apiCalls";
 import { Customers } from "./classes/Customers"
 import { Bookings } from "./classes/Bookings"
-// import { Room } from "./classes/Room"
+import { Rooms } from "./classes/Rooms"
 // import { customers, bookings, rooms } from "./data/mockdata"
 import MyDatePicker from './classes/MyDatePicker.js';
 
@@ -66,30 +66,51 @@ document.addEventListener('DOMContentLoaded', function() {
 
 const myDatePicker = new MyDatePicker('#datepicker');
 
-const customers = new Customers();
-customers.getAllCustomers()
-    .then(data => {
-        console.log(data);
-  });
-customers.findById(43)
-  .then(customer => {
-    console.log("????",customer);
-  });
-
-const booking = new Bookings();
-customers.getAllCustomers()
-    .then(data => {
-    console.log(data);
-    booking.bookingsForCustomer(43);
-});
 // //PROMISES TO HANDLE AND USE API
-// let customer
-// Promise.all()
-// .then(function(data) {
-//     const getAllCustomers = data[0].customers
-//     const findCustomerById = data[1].customers
-//     customer = new Customers(getAllCustomers[0])
-// })
+
+// const customers = new Customers();
+// customers.getAllCustomers()
+//     .then(data => {
+//         console.log(data);
+//   });
+// customers.findById(43)
+//   .then(data => {
+//     console.log("????",data);
+//   });
+
+// const booking = new Bookings();
+// customers.getAllCustomers()
+//     .then(data => {
+//     console.log(data);
+//     booking.bookingsForCustomer(43);
+// });
+
+// const rooms = new Rooms();
+// rooms.getRooms()
+//   .then(data => {
+//     console.log(data);
+//   });
+
+const customerId = 50;
+
+const customers = new Customers();
+const bookings = new Bookings();
+const rooms = new Rooms();
+
+Promise.all([
+  customers.getAllCustomers(),
+  customers.findById(customerId),
+  bookings.bookingsForCustomer(customerId),
+  rooms.getRooms(),
+]).then(([allCustomers, customerById, bookingsForCustomer, allRooms]) => {
+//   console.log('All Customers:', allCustomers);
+//   console.log('Customer by ID:', customerById);
+//   console.log('Bookings for Customer:', bookingsForCustomer);
+//   console.log('All Rooms:', allRooms);
+}).catch(error => {
+  console.error('There was a problem fetching the data:', error);
+});
+
 
 
 //function to set a random image as the background from the image array above.
