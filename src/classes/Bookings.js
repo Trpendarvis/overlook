@@ -1,13 +1,3 @@
-//import from "./";
-//import rooms?
-// class Booking {
-//     constructor(customer, room) {
-//         this.userID = customer.id
-//         this.date = selectedDate
-//         this.roomNumber = room.number
-//     }
-// }
-
 class Bookings {
     constructor(booking) {
         this.id = booking.id
@@ -24,6 +14,7 @@ class Bookings {
     }
 }
 
+export { Bookings };
 // import { Customers } from "./Customers"
 
 // class Bookings {
@@ -63,13 +54,12 @@ class Bookings {
 //   }
 // }
 
-export { Bookings };
-
-// const bookings = [
+//////data structure://////
+// {const bookings = [
 //     {
 //     "id": "5fwrgu4i7k55hl6sz",
 //     "userID": 1,
 //     "date": "2022/04/22",
 //     "roomNumber": 5
 //     },
-// ]
+// ]}
