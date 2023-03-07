@@ -1,20 +1,19 @@
-import { Bookings } from "./Bookings";
-// import { MyDatePicker } from './MyDatePicker.js';
+import { Bookings } from "./Bookings"
 
 class Customers {
   constructor(data) {
-    this.id = data.id;
-    this.name = data.name;
-    this.allBookings = [];
-    this.upcomingBookings = [];
-    this.pastBookings = [];
+    this.id = data.id
+    this.name = data.name
+    this.allBookings = []
+    this.upcomingBookings = []
+    this.pastBookings = []
   }
 
   getBookingdata(bookingData) {
     return bookingData.map((currentBooking) => {
       return new Bookings(currentBooking)
-      })
-    }
+    })
+  }
 
   getCustomersBookingInfo(bookingData) {
     this.allBookings = bookingData.filter((currentBooking) => {
@@ -77,18 +76,18 @@ class Customers {
   }
 
   getCurrentDate() {
-    let today = new Date();
-    let dayOfMonth = today.getDate();
-    let month = today.getMonth() + 1;
-    let year = today.getFullYear();
+    let today = new Date()
+    let dayOfMonth = today.getDate()
+    let month = today.getMonth() + 1
+    let year = today.getFullYear()
     if (dayOfMonth < 10) {
-      dayOfMonth = "0" + dayOfMonth;
+      dayOfMonth = "0" + dayOfMonth
     }
     if (month < 10) {
-      month = "0" + month;
+      month = "0" + month
     }
-    return Number(year + month + dayOfMonth);
+    return Number(year + month + dayOfMonth)
   }
 }
 
-export { Customers };
+export { Customers }

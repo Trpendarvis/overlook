@@ -1,4 +1,3 @@
-
 const getAPIData = (url) => {
     return fetch(url)
     .then(response => {
