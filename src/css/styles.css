@@ -98,13 +98,16 @@ main{
   flex-grow: 1;
 }
 
-.containerLeft {
+.containerLeft,
+.containerRight
+ {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-.containerLeft h2 {
+.containerLeft h2,
+.containerRight h2 {
   margin-top: 5vh;
 }
 
@@ -128,9 +131,6 @@ button:hover {
   background-color: #01a3f3;
 }
 
-/* .hidden{
-  visibility: hidden !important;
-} */
 
 .ui-datepicker {
   background-color: rgba(255, 255, 255, 0.5);
@@ -166,3 +166,11 @@ button:hover {
     opacity: 0;
   }
 }
+
+.hidden {
+  display: none !important;
+ }
+
+/* .hidden{
+  visibility: hidden !important;
+} */

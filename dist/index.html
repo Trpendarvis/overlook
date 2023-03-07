@@ -21,14 +21,14 @@
     </div>
     <section class="navBarInteractions">
       <div class="navButtons">
-        <button id="home-button" data-current="">
+        <button id="booking-button">
           <img class="iconImage" src="images/reception-bell.png" alt="service-bell-icon">Booking</button>
         <!-- <button id="" data-current="">
           <img class="iconImage" src="images/account.png" alt="Picture of fancy hotel">Account</button> -->
-        <button id="trips-button" data-current="">
+        <button id="trips-button">
           <img class="iconImage" src="images/business-trip.png" alt="suitcase-with-plane-icon">Trips</button>
           <img class="iconImage" src="images/budget.png" alt="money-and-calculator">
-        <select id="currency-dropdown" data-current="">
+        <select id="currency-dropdown">
           <option value="usd">USD</option>
           <option value="eur">EUR</option>
           <option value="gbp">GBP</option>
@@ -39,7 +39,19 @@
     </section>
   </nav>
   <main>
-      <div class="containerLeft">
+      <div class="containerLeft hidden" id="past-booking-container">
+        <h2>Past Trips</h2>
+        <p>`${room details}`</p>
+        `${rooms.costPerNight}`
+        <!-- content for the container -->
+      </div>      
+      <div class="containerRight hidden" id="upcoming-booking-container">
+        <h2>Upcoming Trips</h2>
+        <p>`${room details}`</p>
+        `${rooms.costPerNight}`
+        <!-- content for the container -->
+      </div>
+      <div class="containerLeft hidden" id="datepicker-container">
         <h2>When Would You Like to Stay?</h2>
         <div id="datepicker"></div>
         <h3>What Room Type Would you Like?</h3>
@@ -55,11 +67,11 @@
           <label for="radio4">Jr. Suite</label>
         </footer>
       </div>
-      <button class="seachButton" id="search-button">
+      <button class="seachButton hidden" id="search-button">
         <img class="iconImage" src="images/loupe.png" alt="searching-glass">SEARCH</button>
-      <div class="containerRight hidden">
-        <!-- content for the second container -->
-        <button class="bookingButton" id="booking-button">
+      <div class="containerRight hidden" id="room-detail-container">
+        <!-- content for the container -->
+        <button class="bookButton" id="book-button">
           <img class="iconImage" src="images/booking.png" alt="clicking-on-phone">BOOK</button>
       </div>
   </main>

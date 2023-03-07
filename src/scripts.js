@@ -9,13 +9,60 @@ import MyDatePicker from './classes/MyDatePicker.js';
 //I want to be able to keep the right container hidden from view until the user searches I am using CSS visibility: hidden
 // document.querySelector('.containerRight').classList.add('hidden');
 // document.querySelector('.containerRight').classList.remove('hidden');
-// const homeButton = document.querySelector("#home-button");
-// const tripsButton = document.querySelector("#trips-button");
-// const currencyPicker = document.querySelector("#currency-dropdown");
-// const calendar = document.querySelector("#datepicker");
-// const roomTypeButton = document.querySelector("#radio-buttons");
-// const searchButton =  document.querySelector("#search-button");
+const bookingButton = document.querySelector("#booking-button");
+const tripsButton = document.querySelector("#trips-button");
+const currencyPicker = document.querySelector("#currency-dropdown");
+const calendar = document.querySelector("#datepicker");
+const roomTypeButton = document.querySelector("#radio-buttons");
+const searchButton =  document.querySelector("#search-button");
 // const bookButton = document.querySelector("#booking-button");
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // show the default containers
+    document.getElementById('past-booking-container').classList.remove('hidden');
+    document.getElementById('upcoming-booking-container').classList.remove('hidden');
+  
+    // set up event listeners for the buttons
+    bookingButton.addEventListener('click', function() {
+        console.log("YAY I GOT PRESSED",bookingButton)
+      // hide the default containers
+      document.getElementById('past-booking-container').classList.add('hidden');
+      document.getElementById('upcoming-booking-container').classList.add('hidden');
+      // show the booking-related containers
+      document.getElementById('datepicker-container').classList.remove('hidden');
+      searchButton.classList.remove('hidden');
+      document.getElementById('room-detail-container').classList.remove('hidden');
+    });
+  
+    tripsButton.addEventListener('click', function() {
+      // hide the booking-related containers
+      document.getElementById('datepicker-container').classList.add('hidden');
+      searchButton.classList.add('hidden');
+      document.getElementById('room-detail-container').classList.add('hidden');
+      // show the default containers
+      document.getElementById('past-booking-container').classList.remove('hidden');
+      document.getElementById('upcoming-booking-container').classList.remove('hidden');
+    });
+  
+    searchButton.addEventListener('click', function() {
+      // hide the search-related containers
+      document.getElementById('datepicker-container').classList.add('hidden');
+      document.getElementById('room-detail-container').classList.add('hidden');
+      searchButton.classList.add('hidden');
+      // show the booking-related containers
+      document.getElementById('past-booking-container').classList.remove('hidden');
+      document.getElementById('upcoming-booking-container').classList.remove('hidden');
+    });
+  });
+  
+  
+
+
+
+  
+
+
 
 const myDatePicker = new MyDatePicker('#datepicker');
 
