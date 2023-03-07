@@ -1,11 +1,11 @@
 class Rooms {
-  constructor(room) {
-    this.number = room.number;
-    this.roomType = room.roomType;
-    this.bidet = room.bidet;
-    this.bedSize = room.bedSize;
-    this.numBeds = room.numBeds;
-    this.costPerNight = room.costPerNight;
+  constructor(data) {
+    this.number = data.number;
+    this.roomType = data.roomType;
+    this.bidet = data.bidet;
+    this.bedSize = data.bedSize;
+    this.numBeds = data.numBeds;
+    this.costPerNight = data.costPerNight;
   }
 }
 

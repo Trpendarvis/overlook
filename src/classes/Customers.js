@@ -1,9 +1,9 @@
 import Bookings from "./Bookings";
 
 class Customers {
-  constructor(customer) {
-    this.customerId = customer.id; //this is the unique ID for the customer
-    this.name = customer.name;
+  constructor(data) {
+    this.customerId = data.id; //this is the unique ID for the customer
+    this.name = data.name;
     this.allBookings = []; //tracks all bookings from a user
     this.pastBookings = []; //this will be compaired to the current date and if it is in the past it will be pushed into this array
     this.upComingBookings = []; //this will be compaired to the current date and if it is in the future it will be pushed into this array

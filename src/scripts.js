@@ -1,5 +1,5 @@
 import './css/styles.css';
-// import { apiCalls } from "./apiCalls";
+import { getAPIData } from "./apiCalls";
 import { Customers } from "./classes/Customers"
 import { Bookings } from "./classes/Bookings"
 import { Rooms } from "./classes/Rooms"
@@ -14,6 +14,18 @@ const roomTypeButton = document.querySelector("#radio-buttons");
 const searchButton =  document.querySelector("#search-button");
 // const bookButton = document.querySelector("#booking-button");
 
+let customersAPI
+let bookingsAPI
+let roomsAPI
+let allBookings
+let currentCustomer
+
+//urls for my API data
+let customersURL = 'http://localhost:3001/api/v1/customers/'
+// let customerData = `http://localhost:3001/api/v1/customers/${$id}`
+let bookingsURL = 'http://localhost:3001/api/v1/bookings/'
+let roomsURL = 'http://localhost:3001/api/v1/rooms/'
+fetchData([customersURL, bookingsURL, roomsURL])
 
 document.addEventListener('DOMContentLoaded', function() {
     // show the default containers
@@ -52,8 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
       document.getElementById('upcoming-booking-container').classList.remove('hidden');
     });
   });
-  
-  
+    
 const myDatePicker = new MyDatePicker('#datepicker');
 
 // //PROMISES TO HANDLE AND USE API
@@ -64,20 +75,45 @@ const customers = new Customers();
 const bookings = new Bookings();
 const rooms = new Rooms();
 
-Promise.all([
-  customers.getAllCustomers(),
-  customers.findById(customerId),
-  bookings.bookingsForCustomer(customerId),
-  rooms.getRooms(),
-]).then(([allCustomers, customerById, bookingsForCustomer, allRooms]) => {
-//   console.log('All Customers:', allCustomers);
-//   console.log('Customer by ID:', customerById);
-//   console.log('Bookings for Customer:', bookingsForCustomer);
-//   console.log('All Rooms:', allRooms);
-}).catch(error => {
-  console.error('There was a problem fetching the data:', error);
-});
 
+function fetchData(urls){
+Promise.all([getAPIData(urls[0]),getAPIData(urls[1]),getAPIData(urls[2])])
+    .then(data => {
+        customersAPI = data[0]
+        bookingsAPI = data[1].bookings
+        roomsAPI = data[2].rooms
+        getNewCustomer(customersAPI)
+        getRooms(roomsAPI)
+
+    })
+    .catch(err => {
+    console.error('There was a problem fetching the data:', err);
+  });
+//   customers.getAllCustomers(),
+//   customers.findById(customerId),
+//   bookings.bookingsForCustomer(customerId),
+//   rooms.getRooms(),
+// .then(([allCustomers, customerById, bookingsForCustomer, allRooms]) => {
+// //   console.log('All Customers:', allCustomers);
+// //   console.log('Customer by ID:', customerById);
+// //   console.log('Bookings for Customer:', bookingsForCustomer);
+// //   console.log('All Rooms:', allRooms);
+// }).catch(error => {
+//   console.error('There was a problem fetching the data:', error);
+// });
+}
+
+function getNewCustomer(data){
+    currentCustomer = new Customers(data)
+    allBookings = currentCustomer.getBookingdata(bookingsAPI)
+    return currentCustomer
+}
+
+function getRooms(data){
+    allRooms = data.map((currentBooking) => {
+        return new Rooms(currentBooking)
+    })
+}
 
 
 //function to set a random image as the background from the image array above.
