@@ -42,6 +42,54 @@ function fetchData(urls){
         });
 }
 
+////BUTTON STUFF////
+currencyDropdown.addEventListener('change', () => {
+    const selectedCurrency = currencyDropdown.value;
+    const roomsWithConvertedPrices = roomsAPI.map(room => {
+      let convertedPrice = room.costPerNight;
+      switch (selectedCurrency) {
+        case 'usd':
+          convertedPrice = room.costPerNight;
+          break;
+        case 'eur':
+          convertedPrice = room.costPerNight * 0.83; // convert to euros
+          break;
+        case 'gbp':
+          convertedPrice = room.costPerNight * 0.72; // convert to pounds
+          break;
+        case 'jpy':
+          convertedPrice = room.costPerNight * 89.54; // convert to yen
+          break;
+        case 'aud':
+          convertedPrice = room.costPerNight * 1.29; // convert to AUD
+          break;
+        default:
+          convertedPrice = room.costPerNight;
+      }
+      return {
+        ...room,
+        costPerNight: convertedPrice
+      };
+    });
+    console.log(roomsWithConvertedPrices);
+    // Do something with the converted prices, such as displaying them on the page
+  })
+  
+const radioContainer = document.querySelector('#radio-buttons')
+radioContainer.addEventListener('change', (event) => {
+const selectedRoomType = event.target.value
+filterRoomsByType(selectedRoomType)
+  })
+  function filterRoomsByType(type) {
+    const filteredRooms = roomsAPI.filter(room => {
+      const roomType = room.roomType.toLowerCase()
+      return roomType.includes(type.toLowerCase())
+    })
+    console.log(filteredRooms)
+    // Do something with the filtered rooms, such as displaying them on the page
+  }
+  
+
 ////DOM STUFF////
 document.addEventListener('DOMContentLoaded', function() {
     // show the default containers
@@ -139,62 +187,6 @@ document.addEventListener("DOMContentLoaded", function() {
 //   bookButton.style.display = 'block';
 // }
 
-const radioContainer = document.querySelector('#radio-buttons');
-radioContainer.addEventListener('change', (event) => {
-  const selectedRoomType = event.target.value;
-  filterRoomsByType(selectedRoomType);
-});
-function filterRoomsByType(type) {
-  const filteredRooms = roomsAPI.filter(room => {
-    const roomType = room.roomType.toLowerCase();
-    return roomType.includes(type.toLowerCase());
-  });
-  console.log(filteredRooms);
-  // Do something with the filtered rooms, such as displaying them on the page
-}
-
-
-
-
-
-
-
-
-
-currencyDropdown.addEventListener('change', () => {
-  const selectedCurrency = currencyDropdown.value;
-  const roomsWithConvertedPrices = roomsAPI.map(room => {
-    let convertedPrice = room.costPerNight;
-    switch (selectedCurrency) {
-      case 'usd':
-        convertedPrice = room.costPerNight;
-        break;
-      case 'eur':
-        convertedPrice = room.costPerNight * 0.83; // convert to euros
-        break;
-      case 'gbp':
-        convertedPrice = room.costPerNight * 0.72; // convert to pounds
-        break;
-      case 'jpy':
-        convertedPrice = room.costPerNight * 89.54; // convert to yen
-        break;
-      case 'aud':
-        convertedPrice = room.costPerNight * 1.29; // convert to AUD
-        break;
-      default:
-        convertedPrice = room.costPerNight;
-    }
-    return {
-      ...room,
-      costPerNight: convertedPrice
-    };
-  });
-  console.log(roomsWithConvertedPrices);
-  // Do something with the converted prices, such as displaying them on the page
-});
-
-
-
 // function displayBookingDetails(room, currency) {
 //     const costPerNight = room.costPerNight;
 //     const convertedPrice = convertCurrency(costPerNight, currency);
@@ -219,32 +211,66 @@ currencyDropdown.addEventListener('change', () => {
 //   }
   
 
-  
-
-
 function getNewCustomer(data) {
     currentCustomer = new Customers(data);
     currentCustomer.allBookings = currentCustomer.getBookingdata(bookingsAPI);
     return currentCustomer;
-  }
+}
 
-  function getRooms(data){
-      allRooms = data.map((currentBooking) => {
-          return new Rooms(currentBooking)
-        })
-        console.log("all rooms!?",allRooms);
-        return allRooms;
-    }
+function getRooms(data) {
+    allRooms = data.map((currentBooking) => {
+    return new Rooms(currentBooking)
+    })
+    return allRooms;
+}
     // function getNewCustomer(data){
     //     currentCustomer = new Customers(data)
     //     allBookings = currentCustomer.getBookingdata(bookingsAPI)
     //     return currentCustomer
     // }
+
+// function UpdateDOM() {
     
+// }    
 
+function userInformation() {
+    currentCustomer.getPastBookings(allBookings)
+    customerPastBookings = currentCustomer.pastBookings
+    currentCustomer.getUpcomingBookings(allBookings)
+    customerUpcomingBookings = currentCustomer.upcomingBookings
+}
 
+// function displayTotalCost() {
+//     currentCustomer.getCustomersBookingInfo(allBookings)
+//     const 
+// }
 
+function formatPostData(id,date,roomnumber) {
+    date = date.toString()
+    date = date.split('')
+    let year = date.slice(0,4)
+    year = year.join(4,6)
+    let month = date.join('')
+    month = month.join('')
+    let day = date.slice(6,8)
+    day = day.join('')
+    date = year + '/' + month + '/' + day
+    postData = 
+    {
+        userID: id,
+        date: date,
+        roomNumber: roomnumber
+    }
+}
 
+// function updateBookings(newBookings) {
+//     allBookings = currentCustomer.getBookingdata(newBookings.bookings) {
+//         currentCustomer.getUpcomingBookings(allBookings)
+//         customerUpcomingBookings = currentCustomer.upcomingBookings
+//         displayUpcomingBookings()
+//         displayTotalCost()
+//     }
+// }
 // // Get the customer's ID (in this case, we assume it is 1)
 // const customerId = 1;
 // console.log(`Customer ID: ${customerId}`);

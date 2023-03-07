@@ -1,93 +1,96 @@
-import { Bookings } from "./Bookings"
+import { Bookings } from "./Bookings";
 
 class Customers {
   constructor(data) {
-    this.id = data.id
-    this.name = data.name
-    this.allBookings = []
-    this.upcomingBookings = []
-    this.pastBookings = []
+    this.id = data.id;
+    this.name = data.name;
+    this.allBookings = [];
+    this.upcomingBookings = [];
+    this.pastBookings = [];
   }
 
   getBookingdata(bookingData) {
     return bookingData.map((currentBooking) => {
-      return new Bookings(currentBooking)
-    })
+      return new Bookings(currentBooking);
+    });
   }
 
   getCustomersBookingInfo(bookingData) {
     this.allBookings = bookingData.filter((currentBooking) => {
-      return currentBooking.userID === this.id
-    })
+      console.log('getCustomersBookingInfo', bookingData);
+      return currentBooking.userID === this.id;
+    });
   } 
 
   getPastBookings(bookingData) {
-    let bookingIsUpcoming
-    let currentDate = this.getCurrentDate()
+    console.log('getPastBookings', bookingData);
+    let bookingIsUpcoming;
+    let currentDate = this.getCurrentDate();
     this.pastBookings = bookingData.filter((currentBooking) => {
-      let selectedDate = currentBooking.date.split('/')
-      selectedDate = Number(selectedDate.join(''))
+      let selectedDate = currentBooking.date.split('/');
+      selectedDate = Number(selectedDate.join(''));
       if(selectedDate >= currentDate) {
-        bookingIsUpcoming = true
+        bookingIsUpcoming = true;
       } else {
-        bookingIsUpcoming = false
+        bookingIsUpcoming = false;
       }
-      return currentBooking.userID === this.id && !bookingIsUpcoming
-    })
+      return currentBooking.userID === this.id && !bookingIsUpcoming;
+    });
   }
 
   getUpcomingBookings(bookingData) {
-    let bookingIsUpcoming
-    let currentDate = this.getCurrentDate()
+    console.log('getUpcomingBookings', bookingData);
+    let bookingIsUpcoming;
+    let currentDate = this.getCurrentDate();
     this.upcomingBookings = bookingData.filter((currentBooking) => {
-      let selectedDate = currentBooking.date.split('/')
-      selectedDate = Number(selectedDate.join(''))
+      let selectedDate = currentBooking.date.split('/');
+      selectedDate = Number(selectedDate.join(''));
       if(selectedDate >= currentDate) {
-        bookingIsUpcoming = true
+        bookingIsUpcoming = true;
       } else {
-        bookingIsUpcoming = false
+        bookingIsUpcoming = false;
       }
-      return currentBooking.userID === this.id && !bookingIsUpcoming
-    })
+      return currentBooking.userID === this.id && bookingIsUpcoming;
+    });
   }
 
   findAvailableRooms(date, bookingData, roomData){
     const unavailableRooms = bookingData.filter((currentBooking) => {
-      let formatDate = currentBooking.date.split('/')
-      formatDate = Number(formatedDate.join(''))
-      return formatedDate === date
-    })
+      let formatDate = currentBooking.date.split('/');
+      formatDate = Number(formatedDate.join(''));
+      return formatedDate === date;
+    });
     let unavailableRoom = unavailableRooms.map((currentAvailablity) => {
-      return currentAvailablity.roomNumber
-    })
+      return currentAvailablity.roomNumber;
+    });
     let availableRooms = roomData.reduce((acc, room) => {
       if(!unavailableRoom.includes(room.roomNumber)) {
-        acc.push(room)
+        acc.push(room);
       }
-      return acc
-    }, [])
-    return availableRooms
+      return acc;
+    }, []);
+    return availableRooms;
   }
 
   filterRoomByRoomType(roomsRoomType, availableRoom) {
     return availableRoom.filter((currentRoom) => {
-      return currentRoom.roomType === roomsRoomType
-    })
+      return currentRoom.roomType === roomsRoomType;
+    });
   }
 
   getCurrentDate() {
-    let today = new Date()
-    let dayOfMonth = today.getDate()
-    let month = today.getMonth() + 1
-    let year = today.getFullYear()
+    let today = new Date();
+    let dayOfMonth = today.getDate();
+    let month = today.getMonth() + 1;
+    let year = today.getFullYear();
     if (dayOfMonth < 10) {
-      dayOfMonth = "0" + dayOfMonth
+      dayOfMonth = "0" + dayOfMonth;
     }
     if (month < 10) {
-      month = "0" + month
+      month = "0" + month;
     }
-    return Number(year + month + dayOfMonth)
+    return Number(year + month + dayOfMonth);
   }
 }
 
-export { Customers }
+export { Customers };
