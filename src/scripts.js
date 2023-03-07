@@ -1,22 +1,14 @@
-// This is the JavaScript entry file - your code begins here
-// Do not delete or rename this file ********
-
-// An example of how you tell webpack to use a CSS (SCSS) file
 import './css/styles.css';
-
-// import { apiCalls, addNewBooking } from "./apiCalls";
-// import { Customer } from "./class/Customer"
-// import { Booking } from "./class/Booking"
-// import { Room } from "./class/Room"
-// import MyDatePicker from "./class/MyDatepicker"
+// import { apiCalls } from "./apiCalls";
+import { Customers } from "./classes/Customers"
+import { Bookings } from "./classes/Bookings"
+// import { Room } from "./classes/Room"
+// import { customers, bookings, rooms } from "./data/mockdata"
 import MyDatePicker from './classes/MyDatePicker.js';
-
 
 //I want to be able to keep the right container hidden from view until the user searches I am using CSS visibility: hidden
 // document.querySelector('.containerRight').classList.add('hidden');
 // document.querySelector('.containerRight').classList.remove('hidden');
-
-const datePicker = new MyDatePicker('#datepicker');
 // const homeButton = document.querySelector("#home-button");
 // const tripsButton = document.querySelector("#trips-button");
 // const currencyPicker = document.querySelector("#currency-dropdown");
@@ -25,20 +17,32 @@ const datePicker = new MyDatePicker('#datepicker');
 // const searchButton =  document.querySelector("#search-button");
 // const bookButton = document.querySelector("#booking-button");
 
+const myDatePicker = new MyDatePicker('#datepicker');
 
-//PROMISES TO HANDLE AND USE API
-// Promise.all(apiCalls)
-// .then(function(values) {
-//     const customerData = values[0].users;
-//     const bookingData = values[1].ingredients;
-//     const roomData = values[2].recipes;
-//     user = new User(usersData[0]);
-//     const userRecipeRepo = new RecipeRepository(usersData[0].recipesToCook, ingredientsData);
-//     user.recipesToCook = userRecipeRepo;
-//     mainRepository = new RecipeRepository(recipeData, ingredientsData);
-//     displayCards(mainRepository);
-//     buttonIndicateCurrentPage();
-// });
+const customers = new Customers();
+customers.getAllCustomers()
+    .then(data => {
+        console.log(data);
+  });
+customers.findById(50)
+  .then(customer => {
+    console.log("????",customer);
+  });
+
+const booking = new Bookings();
+customers.getAllCustomers()
+    .then(data => {
+    console.log(data);
+    booking.bookingsForCustomer(50);
+});
+// //PROMISES TO HANDLE AND USE API
+// let customer
+// Promise.all()
+// .then(function(data) {
+//     const getAllCustomers = data[0].customers
+//     const findCustomerById = data[1].customers
+//     customer = new Customers(getAllCustomers[0])
+// })
 
 
 //function to set a random image as the background from the image array above.
@@ -56,3 +60,33 @@ document.getElementById("background-image").style.backgroundImage = imgUrl;
   changeImage();
   setInterval(changeImage, 300000);
 })
+
+
+// // Get the customer's ID (in this case, we assume it is 1)
+// const customerId = 1;
+// console.log(`Customer ID: ${customerId}`);
+// // Step 2: Get the bookings associated with the customer
+// const customerBookings = bookings.filter((booking) => booking.userID === customerId);
+// console.log(`Customer Bookings: ${JSON.stringify(customerBookings)}`);
+// // Step 3: Get the rooms associated with the customer's bookings
+// const customerRooms = customerBookings.map((booking) => {
+//   const room = rooms.find((room) => room.number === booking.roomNumber);
+//   return room?.costPerNight ? room : null;
+// }).filter(Boolean);
+// console.log(`Rooms associated with customer bookings: ${JSON.stringify(customerRooms)}`);
+// // Step 4: Calculate the total amount spent on rooms
+// const totalAmountSpent = customerRooms.reduce((total, room) => total + room.costPerNight, 0);
+// console.log(`Total amount spent on rooms: $${totalAmountSpent.toFixed(2)}`);
+// // Step 5: Display the dashboard page
+// console.log(`Bookings: ${JSON.stringify(customerBookings)}`);
+// console.log(`Total amount spent: $${totalAmountSpent.toFixed(2)}`);
+
+// // Step 6: Filter the bookings array by the selected date
+// function getBookingsForDate(selectedDate) {
+//     return bookings.filter((booking) => {
+//       const bookingStart = new Date(booking.date);
+//       const bookingEnd = new Date(bookingStart);
+//       bookingEnd.setDate(bookingEnd.getDate() + 1);
+//       return
+//     })
+// }
