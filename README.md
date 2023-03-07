@@ -31,10 +31,10 @@ Using Mocha/Chai testing run "npm test" all test for tested classes has been com
 **Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
 All test are complete and passing:
 
-- [ ] Test A: 
-- [ ] Test B: 
-- [ ] Test C: 
-- [ ] Test D: 
+- [ ] Test A: Customer-test.js
+- [ ] Test B: Room-test.js
+- [ ] Test C: Booking-test.js
+- [ ] Test D: MyDatePicker-test.js
 
 ## Running Tests
 Run your test suite using the command:
@@ -57,7 +57,7 @@ The test results will output to the terminal.
     - I should be able to filter the list of available rooms by their roomType property.
     - I should be able to select a room for booking.
     - In the event that no rooms are available for the date/roomType selected, display a message fiercely apologizing to the user and asking them to adjust their room search.
-- [ ] Iteration 3: Accessibility:
+- [X] Iteration 3: Accessibility:
     - Create a branch for accessibility.
     - Use this branch to make your dashboard as accessible as possible.
     - Push this branch up to GH. You can merge the changes into main but do not delete this branch. (this is to check for accessibility without the log-in page interferring with the test).
