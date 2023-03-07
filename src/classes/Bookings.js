@@ -1,4 +1,4 @@
-import { getAPIData, bookingsURL } from "../apiCalls.js";
+// import { getAPIData, bookingsURL } from "../apiCalls.js";
 
 
 class Bookings {
@@ -8,27 +8,24 @@ class Bookings {
     this.date = data && data.date;
     this.roomNumber = data && data.roomNumber;
     this.bookingDate = 0;
-
-
   }
 
   formateDate() {
-    //from myDatePicker.js needed here since this is also using a date
     let dateAsNum = this.date.split('/'); //remove the / so its just a string of num
     dateAsNum = Number(dateAsNum.join(''));
     this.bookingDate = dateAsNum;
   }
-
-  getAllBookings() {
-    return getAPIData(bookingsURL);
-  }
-
-  getCustomerBookings(bookingData, customerId) {
-    return Promise.resolve(bookingData.filter(booking => booking.userID === customerId));
-  }
 }
 
 export { Bookings };
+
+  // getAllBookings() {
+  //   return getAPIData(bookingsURL);
+  // }
+
+  // getCustomerBookings(bookingData, customerId) {
+  //   return Promise.resolve(bookingData.filter(booking => booking.userID === customerId));
+  // }
 
 
 // import { Customers } from "./Customers"

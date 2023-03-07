@@ -21,7 +21,7 @@ let allBookings
 let currentCustomer
 let allRooms
 
-const customerId = 50 
+const customerId = 43 
 
 //urls for my API data
 let customersURL = 'http://localhost:3001/api/v1/customers/'

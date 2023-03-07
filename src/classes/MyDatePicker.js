@@ -7,7 +7,6 @@ class MyDatePicker {
     this.selectedDateStr = null;
     this.datesToCheck = datesToCheck || [];
     // this.bookingAPI = bookingsAPI;
-
     this.init();
   }
 
@@ -86,59 +85,32 @@ class MyDatePicker {
       messageContainer.append(messageDiv);
     }
   }
-  
-  // checkSelectedDate() {
-  //   allBookings.then(bookingsData => {
-  //     const datesToCheck = bookingsData.map(booking => {
-  //       const dateParts = booking.date.split('/');
-  //       return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-  //     });
-  
-  //     const selectedDate = new Date(this.selectedDateStr);
-  //     const matches = datesToCheck.some(date => {
-  //       return date.getFullYear() === selectedDate.getFullYear() &&
-  //              date.getMonth() === selectedDate.getMonth() &&
-  //              date.getDate() === selectedDate.getDate();
-  //     });
-  
-  //     if (matches) {
-  //       console.log(`The date ${this.selectedDateStr} matches a date in the array.`);
-  //       this.displayNoRoomsAvailable();
-  //     } else {
-  //       console.log(`The date ${this.selectedDateStr} does not match any date in the array.`);
-  //       $(".no-rooms-available").remove();
-  //     }
-  //   }).catch(error => console.error(error));
-  // }
+
   checkSelectedDate() {
-    const bookingsAPI = new Bookings({id: null, userID: null, date: this.selectedDateStr, roomNumber: null});
-    console.log("WTF",bookingsAPI)
-    bookingsAPI.getAllBookings().then(bookingData => {
-      const datesToCheck = bookingData.map(booking => {
-        const dateParts = booking.date.split('/');
-        return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-      });
-  
-      const selectedDate = new Date(this.selectedDateStr);
-      const matches = datesToCheck.some(date => {
-        return date.getFullYear() === selectedDate.getFullYear() &&
-               date.getMonth() === selectedDate.getMonth() &&
-               date.getDate() === selectedDate.getDate();
-      });
-  
-      if (matches) {
-        console.log(`The date ${this.selectedDateStr} matches a date in the array.`);
-        this.displayNoRoomsAvailable();
-      } else {
-        console.log(`The date ${this.selectedDateStr} does not match any date in the array.`);
-        $(".no-rooms-available").remove();
-      }
+    const datesToCheck = this.datesToCheck.map(dateStr => {
+      const dateParts = dateStr.split('/');
+      return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
     });
+  
+    const selectedDate = new Date(this.selectedDateStr);
+    const matches = datesToCheck.some(date => {
+      return date.getFullYear() === selectedDate.getFullYear() &&
+             date.getMonth() === selectedDate.getMonth() &&
+             date.getDate() === selectedDate.getDate();
+    });
+  
+    if (matches) {
+      console.log(`The date ${this.selectedDateStr} matches a date in the array.`);
+      this.displayNoRoomsAvailable();
+    } else {
+      console.log(`The date ${this.selectedDateStr} does not match any date in the array.`);
+      $(".no-rooms-available").remove();
+    }
   }
   
-  getBookingdata(data) {
-    return data.filter((booking) => booking.userID === this.id);
-  }
+  // getBookingdata(data) {
+  //   return data.filter((booking) => booking.userID === this.id);
+  // }
 
   checkSelectedDatePublic() {
     this.checkSelectedDate();

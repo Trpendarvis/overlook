@@ -33,31 +33,31 @@ class Customers {
       
   //   })
   // }
-  checkSelectedDate() {
-    const bookingAPI = new Bookings({ id: null, userID: null, date: this.selectedDateStr, roomNumber: null });
+  // checkSelectedDate() {
+  //   const bookingAPI = new Bookings({ id: null, userID: null, date: this.selectedDateStr, roomNumber: null });
     
-    bookingAPI.getAllBookings().then(bookingData => {
-      const datesToCheck = bookingData.bookings.map(booking => {
-        const dateParts = booking.date.split('/');
-        return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-      });
+  //   bookingAPI.getAllBookings().then(bookingData => {
+  //     const datesToCheck = bookingData.bookings.map(booking => {
+  //       const dateParts = booking.date.split('/');
+  //       return new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+  //     });
   
-      const selectedDate = new Date(this.selectedDateStr);
-      const matches = datesToCheck.some(date => {
-        return date.getFullYear() === selectedDate.getFullYear() &&
-               date.getMonth() === selectedDate.getMonth() &&
-               date.getDate() === selectedDate.getDate();
-      });
+  //     const selectedDate = new Date(this.selectedDateStr);
+  //     const matches = datesToCheck.some(date => {
+  //       return date.getFullYear() === selectedDate.getFullYear() &&
+  //              date.getMonth() === selectedDate.getMonth() &&
+  //              date.getDate() === selectedDate.getDate();
+  //     });
   
-      if (matches) {
-        console.log(`The date ${this.selectedDateStr} matches a date in the array.`);
-        this.displayNoRoomsAvailable();
-      } else {
-        console.log(`The date ${this.selectedDateStr} does not match any date in the array.`);
-        $(".no-rooms-available").remove();
-      }
-    });
-  }
+  //     if (matches) {
+  //       console.log(`The date ${this.selectedDateStr} matches a date in the array.`);
+  //       this.displayNoRoomsAvailable();
+  //     } else {
+  //       console.log(`The date ${this.selectedDateStr} does not match any date in the array.`);
+  //       $(".no-rooms-available").remove();
+  //     }
+  //   });
+  // }
   
   findPastBookings(bookingData) {
     let currentDate = this.getCurrentDate();
