@@ -56,6 +56,10 @@ button {
   color: #01a3f3;
 }
 
+div.booking,
+li.room {
+  cursor: pointer;
+}
 .iconImage {
   height: 30px;
   margin-right: 10px;
@@ -109,6 +113,12 @@ main{
 .containerLeft h2,
 .containerRight h2 {
   margin-top: 5vh;
+}
+
+#room-detail-container{
+  display: flex;
+  justify-content: flex-start;
+  overflow-y: scroll;
 }
 
 .radioButtons {

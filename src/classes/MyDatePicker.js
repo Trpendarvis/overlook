@@ -1,5 +1,9 @@
 import { Bookings } from "./Bookings"
 import { getAPIData } from "../apiCalls"
+import { bookingData } from "../scripts"
+import { roomData } from "../scripts"
+import {findAvailableRooms, updateAvailableRooms} from "../scripts"
+import {availableRooms} from "../scripts"
 
 class MyDatePicker {
   constructor(datepickerSelector, datesToCheck) {
@@ -13,11 +17,12 @@ class MyDatePicker {
     $(this.datepickerSelector).datepicker({
       defaultDate: new Date('2022/01/01'),
       onSelect: () => {
-        const selectedDate = $(this.datepickerSelector).datepicker('getDate')
-        const selectedDateStr = $.datepicker.formatDate('yy/mm/dd', selectedDate)
-        console.log(selectedDateStr)
+        const selectedDate = $(this.datepickerSelector).datepicker('getDate');
+        const selectedDateStr = $.datepicker.formatDate('yy/mm/dd', selectedDate);
+        const availableRooms = findAvailableRooms(selectedDateStr, bookingData, roomData);
+        updateAvailableRooms(availableRooms, roomData);
       }
-    })
+    });
 
     $(document).on('keydown', this.datepickerSelector, (e) => {
       if (e.keyCode === 27) { // Escape key
