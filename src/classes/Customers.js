@@ -9,8 +9,16 @@ class Customers {
     this.pastBookings = [];
   }
 
-  getBookingdata(bookingData) {
-    return bookingData.map((currentBooking) => {
+// class Customers {
+//   constructor(data) {
+//     this.id = data;
+//     this.name = data;
+//     this.bookings = data;
+//     this.allBookings = [];
+//   }
+
+  getBookingdata(bookingsData) {
+    return bookingsData.map((currentBooking) => {
       return new Bookings(currentBooking);
     });
   }
@@ -79,17 +87,11 @@ class Customers {
   }
 
   getCurrentDate() {
-    let today = new Date();
-    let dayOfMonth = today.getDate();
-    let month = today.getMonth() + 1;
-    let year = today.getFullYear();
-    if (dayOfMonth < 10) {
-      dayOfMonth = "0" + dayOfMonth;
-    }
-    if (month < 10) {
-      month = "0" + month;
-    }
-    return Number(year + month + dayOfMonth);
+    const today = new Date();
+    const month = today.getMonth() + 1;
+    const day = today.getDate();
+    const year = today.getFullYear();
+    return `${year}/${month}/${day}`;
   }
 }
 

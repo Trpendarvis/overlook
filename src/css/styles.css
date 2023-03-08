@@ -155,22 +155,41 @@ button:hover {
   color: black;
 }
 
-.no-rooms-available{
+/* .no-rooms-available{
   color: red;
   font-size: 22px;
   animation: flash 1s infinite;
+} */
+
+#past-booking-container,
+#upcoming-booking-container {
+  display: flex;
+  font-size: 20px;
+  overflow-y: scroll;
 }
 
-@keyframes flash {
+#past-booking-container h2,
+#upcoming-booking-container h2{
+  margin-top: 15px;
+  color: #01a3f3;
+  justify-content: space-between
+}
+
+#past-total-spending,
+#total-spending {
+  margin-bottom: 5px;
+  color: orange;
+}
+/* @keyframes flash {
   50% {
     opacity: 0;
   }
-}
+} */
 
 .hidden {
   display: none !important;
  }
 
-/* .hidden{
+.hidden{
   visibility: hidden !important;
-} */
+}
