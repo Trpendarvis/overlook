@@ -2,7 +2,7 @@
 The details of this project are outlined in [Overlook - Solo Project](https://frontend.turing.edu/projects/overlook.html).
 
 ### Description
-This project is the final solo project for Mod2 of Turing Coding School. The purpose of this project is to use API data and create different classes with methods and to use the API data to to create functionality to be displayed to the DOM. This project is meant to be a hotel booking page that a user can log-in and choose from a varity of rooms. Deployment link [GitHub Pages](https://pages.github.com/).
+This project is the final solo project for Mod2 of Turing Coding School it is currently not in a finished state, but I look forward to polishing and completing this project. The purpose of this project is to use API data and create different classes with methods and to use the API data to to create functionality to be displayed to the DOM. This project is meant to be a hotel booking page that a user can log-in and choose from a varity of rooms. Deployment link [GitHub Pages](https://pages.github.com/).
 
 ### Gif of Working Project:
 
@@ -31,9 +31,9 @@ Using Mocha/Chai testing run "npm test" all test for tested classes has been com
 **Put all of your test files in the `test` directory.** As a convention, all test filenames should end with `-test.js`. For instance: `box-test.js`.
 All test are complete and passing:
 
-- [ ] Test A: Customer-test.js
-- [ ] Test B: Room-test.js
-- [ ] Test C: Booking-test.js
+- [X] Test A: Customer-test.js
+- [X] Test B: Room-test.js
+- [X] Test C: Booking-test.js
 - [ ] Test D: MyDatePicker-test.js
 
 ## Running Tests
@@ -48,7 +48,7 @@ The test results will output to the terminal.
 - [ ] Comments have been removed from code.
 - [ ] Syntax has been checked for consistency.
 - [X] All git workflow was followed to show clear progress.
-- [ ] ***Iteration 1***: Dashboard:
+- [X] ***Iteration 1***: Dashboard:
 	- Any room bookings I have made (past or upcoming).
 	- The total amount I have spent on rooms.
 - [ ] ***Iteration 2***: Customer Interaction:
@@ -79,7 +79,7 @@ The test results will output to the terminal.
         - Delete any upcoming room bookings for that user (they cannot delete a booking from the past).
 
 ### Setup
-If you would like to view the code and its inner working please follow the steps below, or you can follow this deployment link [GitHub Pages](https://pages.github.com/).
+(WIP) If you would like to view the code and its inner working please follow the steps below, or you can follow this deployment link [GitHub Pages](https://pages.github.com/).
 1. Fork this repo - on the top right corner of this page, click the **Fork** button.
 1. Clone down the _forked_ repo. `git clone [remote-address] [what you want to name the repo]`
 1. Once you have cloned the repo, change into the directory and install the project dependencies. Run `npm install` to install project dependencies.
