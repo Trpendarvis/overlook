@@ -8,7 +8,7 @@ const getAPIData = (url) => {
     
     })
     .catch(err => {
-        console.log("An error happened", err)
+        throw new Error(`Network error: ${err.message}`)
     })
 }
 

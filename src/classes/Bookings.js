@@ -6,12 +6,6 @@ class Bookings {
     this.roomNumber = data.roomNumber
     this.bookingDate = 0
   }
-
-  formateDate() {
-    let dateAsNum = this.date.split('/')
-    dateAsNum = Number(dateAsNum.join(''))
-    this.bookingDate = dateAsNum;
-  }
 }
 
 export { Bookings }
